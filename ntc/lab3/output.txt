@@ -1,0 +1,45 @@
+Values of a and b such that (k*n) + (b^2) == (a^2):
+a: 49700450
+b: 49700447
+GCD of n and a-b: 1
+GCD of n and a+b: 99400897
+Prime factors of gcd(n,a-b): N/A
+Prime factors of gcd(n,a+b): 99400897
+Prime factors of n using Difference of Squares method: 99400897
+
+Values of a and b such that (k*n) + (b^2) == (a^2):
+a: 29413
+b: 19602
+GCD of n and a-b: 9811
+GCD of n and a+b: 9803
+Prime factors of gcd(n,a-b): 9811
+Prime factors of gcd(n,a+b): 9803
+Prime factors of n using Difference of Squares method: 9803,9811
+
+Values of a and b such that (k*n) + (b^2) == (a^2):
+a: 1768
+b: 881
+GCD of n and a-b: 887
+GCD of n and a+b: 883
+Prime factors of gcd(n,a-b): 887
+Prime factors of gcd(n,a+b): 883
+Prime factors of n using Difference of Squares method: 883,887
+
+Values of a and b such that (k*n) + (b^2) == (a^2):
+a: 2366
+b: 1569
+GCD of n and a-b: 797
+GCD of n and a+b: 787
+Prime factors of gcd(n,a-b): 797
+Prime factors of gcd(n,a+b): 787
+Prime factors of n using Difference of Squares method: 787,797
+
+Values of a and b such that (k*n) + (b^2) == (a^2):
+a: 1196
+b: 535
+GCD of n and a-b: 661
+GCD of n and a+b: 577
+Prime factors of gcd(n,a-b): 661
+Prime factors of gcd(n,a+b): 577
+Prime factors of n using Difference of Squares method: 577,661
+
