@@ -5,6 +5,8 @@ import math
 import os
 
 # Load a CSV file
+
+
 def load_csv(filename):
     dataset = list()
     with open(filename, 'r') as file:
@@ -16,11 +18,15 @@ def load_csv(filename):
     return dataset
 
 # Convert string column to float
+
+
 def str_column_to_float(dataset, column):
     for row in dataset:
         row[column] = float(row[column].strip())
 
 # Convert string column to integer
+
+
 def str_column_to_int(dataset, column):
     class_values = [row[column] for row in dataset]
     unique = set(class_values)
@@ -32,6 +38,8 @@ def str_column_to_int(dataset, column):
     return lookup
 
 # Split a dataset into k folds
+
+
 def cross_validation_split(dataset, n_folds):
     dataset_split = list()
     dataset_copy = list(dataset)
@@ -45,6 +53,8 @@ def cross_validation_split(dataset, n_folds):
     return dataset_split
 
 # Calculate accuracy percentage
+
+
 def accuracy_metric(actual, predicted):
     correct = 0
     for i in range(len(actual)):
@@ -53,6 +63,8 @@ def accuracy_metric(actual, predicted):
     return correct / float(len(actual)) * 100.0
 
 # Make a prediction with weights
+
+
 def predict(row, weights):
     activation = weights[0]
     for i in range(len(row)-1):
@@ -60,8 +72,10 @@ def predict(row, weights):
     return 1.0 if activation >= 0.0 else 0.0
 
 # Estimate Perceptron weights using stochastic gradient descent
+
+
 def train_weights(train, l_rate, n_epoch):
-    weights = [round(random.uniform(0,1), 2) for i in range(len(train[0]))]
+    weights = [round(random.uniform(0, 1), 2) for i in range(len(train[0]))]
     for epoch in range(n_epoch):
         # print("epoch ", epoch)
         for row in train:
@@ -75,6 +89,8 @@ def train_weights(train, l_rate, n_epoch):
     return weights
 
 # Perceptron Algorithm With Stochastic Gradient Descent
+
+
 def perceptron(train, test, l_rate, n_epoch):
     predictions = list()
     weights = train_weights(train, l_rate, n_epoch)
@@ -84,6 +100,8 @@ def perceptron(train, test, l_rate, n_epoch):
     return(predictions)
 
 # Evaluate an algorithm using a cross validation split
+
+
 def evaluate_algorithm(dataset, algorithm, n_folds, *args):
     folds = cross_validation_split(dataset, n_folds)
     scores = list()
@@ -103,15 +121,18 @@ def evaluate_algorithm(dataset, algorithm, n_folds, *args):
     return scores
 
 # Driver
+
+
 def main():
-    filename = "/home/student/203/5-Sem/sc/lab2 (single-perceptron)/SPECT.csv"
+    filename = "/Users/adityakaria/code/5-Sem/sc/lab2 (single-perceptron)/SPECT.csv"
     attributes = []
     dataset = []
     with open(filename, 'r') as csvfile:
         csvreader = csv.reader(csvfile)
         # attributes = csvreader.next()
         for row in csvreader:
-            row = row[1:] + list(row[0])
+            row = row[1:] + [1 if row[0] == "Yes" else 0]
+            # print(row)
             dataset.append(row)
     attributes = dataset[0]
     dataset = dataset[1:]
@@ -122,7 +143,7 @@ def main():
     # for i in range(len(dataset)):
     #     print(dataset[i])
     n_folds = 10
-    l_rate = 0.2
+    l_rate = 0.1
     n_epoch = 500
     scores = evaluate_algorithm(dataset, perceptron, n_folds, l_rate, n_epoch)
     print('Scores: %s' % scores)
