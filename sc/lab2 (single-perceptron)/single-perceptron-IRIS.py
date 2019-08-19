@@ -1,13 +1,10 @@
-from csv import reader
-from random import randrange
-from random import seed
+import csv
+import random
 import csv
 import math
 import os
 
 # Load a CSV file
-
-
 def load_csv(filename):
     dataset = list()
     with open(filename, 'r') as file:
@@ -18,33 +15,12 @@ def load_csv(filename):
             dataset.append(row)
     return dataset
 
-
-def main():
-    filename = "/Users/adityakaria/code/5-Sem/sc/lab2 (single-perceptron)/IRIS.csv"
-    dataset = load_csv(filename)
-
-    k = 10
-    accuracy = []
-    avg_acc = 0.0
-
-
-if __name__ == '__main__':
-    main()
-
-
-# Perceptron Algorithm on the Sonar Dataset
-
-
 # Convert string column to float
-
-
 def str_column_to_float(dataset, column):
     for row in dataset:
         row[column] = float(row[column].strip())
 
 # Convert string column to integer
-
-
 def str_column_to_int(dataset, column):
     class_values = [row[column] for row in dataset]
     unique = set(class_values)
@@ -56,8 +32,6 @@ def str_column_to_int(dataset, column):
     return lookup
 
 # Split a dataset into k folds
-
-
 def cross_validation_split(dataset, n_folds):
     dataset_split = list()
     dataset_copy = list(dataset)
@@ -65,14 +39,12 @@ def cross_validation_split(dataset, n_folds):
     for i in range(n_folds):
         fold = list()
         while len(fold) < fold_size:
-            index = randrange(len(dataset_copy))
+            index = random.randrange(len(dataset_copy))
             fold.append(dataset_copy.pop(index))
         dataset_split.append(fold)
     return dataset_split
 
 # Calculate accuracy percentage
-
-
 def accuracy_metric(actual, predicted):
     correct = 0
     for i in range(len(actual)):
@@ -80,9 +52,38 @@ def accuracy_metric(actual, predicted):
             correct += 1
     return correct / float(len(actual)) * 100.0
 
+# Make a prediction with weights
+def predict(row, weights):
+    activation = weights[0]
+    for i in range(len(row)-1):
+        activation += weights[i + 1] * row[i]
+    return 1.0 if activation >= 0.0 else 0.0
+
+# Estimate Perceptron weights using stochastic gradient descent
+def train_weights(train, l_rate, n_epoch):
+    weights = [round(random.uniform(0,1), 2) for i in range(len(train[0]))]
+    for epoch in range(n_epoch):
+        # print("epoch ", epoch)
+        for row in train:
+            prediction = predict(row, weights)
+            # print("\tweights:", weights)
+            # print("\ty:", prediction, "--- z:", row[-1])
+            error = row[-1] - prediction
+            weights[0] = weights[0] + l_rate * error
+            for i in range(len(row)-1):
+                weights[i + 1] = weights[i + 1] + l_rate * error * row[i]
+    return weights
+
+# Perceptron Algorithm With Stochastic Gradient Descent
+def perceptron(train, test, l_rate, n_epoch):
+    predictions = list()
+    weights = train_weights(train, l_rate, n_epoch)
+    for row in test:
+        prediction = predict(row, weights)
+        predictions.append(prediction)
+    return(predictions)
+
 # Evaluate an algorithm using a cross validation split
-
-
 def evaluate_algorithm(dataset, algorithm, n_folds, *args):
     folds = cross_validation_split(dataset, n_folds)
     scores = list()
@@ -101,54 +102,31 @@ def evaluate_algorithm(dataset, algorithm, n_folds, *args):
         scores.append(accuracy)
     return scores
 
-# Make a prediction with weights
+# Driver
+def main():
+    filename = "/home/student/203/5-Sem/sc/lab2 (single-perceptron)/IRIS.csv"
+    attributes = []
+    dataset = []
+    with open(filename, 'r') as csvfile:
+        csvreader = csv.reader(csvfile)
+        # attributes = csvreader.next()
+        for row in csvreader:
+            dataset.append(row)
+    attributes = dataset[0]
+    dataset = dataset[1:]
+    for i in range(len(dataset[0])-1):
+        str_column_to_float(dataset, i)
+    # convert string class to integers
+    str_column_to_int(dataset, len(dataset[0])-1)
+    # for i in range(len(dataset)):
+    #     print(dataset[i])
+    n_folds = 10
+    l_rate = 0.2
+    n_epoch = 500
+    scores = evaluate_algorithm(dataset, perceptron, n_folds, l_rate, n_epoch)
+    print('Scores: %s' % scores)
+    print('Mean Accuracy: %.3f%%' % (sum(scores)/float(len(scores))))
 
 
-def predict(row, weights):
-    activation = weights[0]
-    for i in range(len(row)-1):
-        activation += weights[i + 1] * row[i]
-    return 1.0 if activation >= 0.0 else 0.0
-
-# Estimate Perceptron weights using stochastic gradient descent
-
-
-def train_weights(train, l_rate, n_epoch):
-    weights = [0.0 for i in range(len(train[0]))]
-    for epoch in range(n_epoch):
-        for row in train:
-            prediction = predict(row, weights)
-            error = row[-1] - prediction
-            weights[0] = weights[0] + l_rate * error
-            for i in range(len(row)-1):
-                weights[i + 1] = weights[i + 1] + l_rate * error * row[i]
-    return weights
-
-# Perceptron Algorithm With Stochastic Gradient Descent
-
-
-def perceptron(train, test, l_rate, n_epoch):
-    predictions = list()
-    weights = train_weights(train, l_rate, n_epoch)
-    for row in test:
-        prediction = predict(row, weights)
-        predictions.append(prediction)
-    return(predictions)
-
-
-# Test the Perceptron algorithm on the sonar dataset
-seed(1)
-# load and prepare data
-filename = 'sonar.all-data.csv'
-dataset = load_csv(filename)
-for i in range(len(dataset[0])-1):
-    str_column_to_float(dataset, i)
-# convert string class to integers
-str_column_to_int(dataset, len(dataset[0])-1)
-# evaluate algorithm
-n_folds = 3
-l_rate = 0.01
-n_epoch = 500
-scores = evaluate_algorithm(dataset, perceptron, n_folds, l_rate, n_epoch)
-print('Scores: %s' % scores)
-print('Mean Accuracy: %.3f%%' % (sum(scores)/float(len(scores))))
+if __name__ == '__main__':
+    main()
