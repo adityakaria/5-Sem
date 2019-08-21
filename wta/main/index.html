@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <!-- head start -->
     <head>
         <!-- Meta tags -->
@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <!-- Js scripts -->
-        <script src="/assets/js/script.js" type="text/javascript"></script> 
+        <script src="assets/js/script.js" type="text/javascript"></script> 
     </head>
     <!-- Head end -->
     <!-- Body start -->
@@ -39,23 +39,56 @@
         </section>
 
         <button class="tablink" onclick="openPage('Home', this, 'red')">Home</button>
-        <button class="tablink" onclick="openPage('News', this, 'green')" id="defaultOpen">News</button>
-        <button class="tablink" onclick="openPage('Contact', this, 'blue')">Contact</button>
+        <a href="login.html"><button class="tablink" id="defaultOpen">Log in</button></a>
+        <a href="sign-up.html"><button class="tablink">Sign Up</button></a>
         <button class="tablink" onclick="openPage('About', this, 'orange')">About</button>
 
         <div id="Home" class="tabcontent">
-            <h3>Home</h3>
+            <h3>Hello</h3>
             <p>Home is where the heart is..</p>
         </div>
 
-        <div id="News" class="tabcontent">
-            <h3>News</h3>
+        <div id="Login" class="tabcontent">
+            <h3>Login</h3>
             <p>Some news this fine day!</p> 
         </div>
 
-        <div id="Contact" class="tabcontent">
-            <h3>Contact</h3>
-            <p>Get in touch, or swing by for a cup of coffee.</p>
+        <div id="SignUp" class="tabcontent">
+            <h3>Sign Up</h3>
+            <br>
+            <form action="#" method="post">
+                <div class="sign-up-form">
+                    <input type="text" name="Name" placeholder=" Name" required="">
+
+                    <div class="clear"></div>
+                </div>
+                <div class="sign-up-form">
+                    <input type="text" name="Phone" placeholder="Phone" required="">
+
+                    <div class="clear"></div>
+                </div>
+                <div class="sign-up-form">
+                    <input type="email" name="email" placeholder="Email" required="">
+
+                    <div class="clear"></div>
+                </div>
+                <div class="sign-up-form ">
+                    <input type="password" name="password" placeholder="Password" required="">
+                    <div class="clear"></div>
+                </div>
+                <div class="main-two-w3ls">
+                    <div class="left-side-forget">
+                        <input type="checkbox" class="checked">
+                        <span class="remenber-me">Remember me </span>
+                    </div>
+                    <div class="right-side-forget">
+                        <a href="#" class="for">Forgot password...?</a>
+                    </div>
+                </div>
+                <div class="btnn">
+                    <button type="submit">Sign Up </button>
+                </div>
+            </form>
         </div>
 
         <div id="About" class="tabcontent">

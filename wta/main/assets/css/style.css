@@ -130,7 +130,27 @@ a:active {
     height: 100%;
 }
   
-#Home {background-color: red;}
-#News {background-color: green;}
-#Contact {background-color: blue;}
-#About {background-color: orange;}
+#Home {
+    background-color: red;
+}
+#Login {
+    background-color: green;
+}
+#SignUp {
+    background-color: blue;
+}
+#About {
+    background-color: orange;
+}
+
+
+.sign-up-form {
+    display: flex;
+    display: -webkit-flex;
+    border: none;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+}
