@@ -124,7 +124,7 @@ def evaluate_algorithm(dataset, algorithm, n_folds, *args):
 
 
 def main():
-    filename = "/Users/adityakaria/code/5-Sem/sc/lab2 (single-perceptron)/IRIS.csv"
+    filename = "/home/student/203/5-Sem/sc/lab2 (single-perceptron)/IRIS.csv"
     attributes = []
     dataset = []
     with open(filename, 'r') as csvfile:
@@ -144,7 +144,9 @@ def main():
     l_rate = 0.2
     n_epoch = 500
     scores = evaluate_algorithm(dataset, perceptron, n_folds, l_rate, n_epoch)
-    print('Scores: %s' % scores)
+    print('Scores:')
+    for i in range(len(scores)):
+        print(i+1, ": ", scores[i])
     print('Mean Accuracy: %.3f%%' % (sum(scores)/float(len(scores))))
 
 

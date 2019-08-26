@@ -5,9 +5,10 @@ import math
 import os
 
 # Load a CSV file
+
+
 prec = []
 rec = []
-
 def load_csv(filename):
     dataset = list()
     with open(filename, 'r') as file:
@@ -59,12 +60,12 @@ def cross_validation_split(dataset, n_folds):
 def accuracy_metric(actual, predicted):
     correct = 0
     for i in range(len(actual)):
+        if actual[i] == predicted[i]:
+            correct += 1
         true_positive = 0
         false_positive = 0
         true_negative = 0
         false_negative = 0
-        if actual[i] == predicted[i]:
-            correct += 1
         if actual[i] == 1 and predicted[i] == 1:
             true_positive += 1
         if actual[i] == 1 and predicted[i] == 0:
@@ -73,9 +74,7 @@ def accuracy_metric(actual, predicted):
             false_positive += 1
         if actual[i] == 0 and predicted[i] == 0:
             true_negative += 1
-        
     prec.append([true_positive, true_negative, false_positive, false_negative])
-       
     return correct / float(len(actual)) * 100.0
 
 # Make a prediction with weights
@@ -140,7 +139,7 @@ def evaluate_algorithm(dataset, algorithm, n_folds, *args):
 
 
 def main():
-    filename = "/home/student/203/5-Sem/sc/lab2 (single-perceptron)/SPECT.csv"
+    filename = "/home/student/203/5-Sem/sc/lab2 (single-perceptron)/SPECTF.csv"
     attributes = []
     dataset = []
     with open(filename, 'r') as csvfile:
@@ -154,12 +153,11 @@ def main():
     dataset = dataset[1:]
     for i in range(len(dataset[0])-1):
         str_column_to_float(dataset, i)
-    # convert string class to integers
     str_column_to_int(dataset, len(dataset[0])-1)
     # for i in range(len(dataset)):
     #     print(dataset[i])
     n_folds = 10
-    l_rate = 0.2
+    l_rate = 0.3
     n_epoch = 500
     scores = evaluate_algorithm(dataset, perceptron, n_folds, l_rate, n_epoch)
     print('Scores:')
@@ -178,7 +176,6 @@ def main():
     print(ttp, ttn, tfp, ttn)
     print('Precision: ', ttp / (ttp + tfp))
     print('Recall: ', ttp / (ttp + tfn))
-
 
 
 if __name__ == '__main__':

@@ -6,9 +6,9 @@ from random import random
 from csv import reader
 from math import exp
 
-# Load a CSV file
 
-
+prec = []
+rec = []
 def load_csv(filename):
     dataset = list()
     with open(filename, 'r') as file:
@@ -16,8 +16,14 @@ def load_csv(filename):
         for row in csv_reader:
             if not row:
                 continue
+            if row[0] == 'Yes':
+                row[0] = 1
+            else:
+                row[0] = 0
+            row = row[1:] + [row[0]]
+            
             dataset.append(row)
-    return dataset
+    return dataset[1:]
 
 # Convert string column to float
 
@@ -78,6 +84,19 @@ def accuracy_metric(actual, predicted):
     for i in range(len(actual)):
         if actual[i] == predicted[i]:
             correct += 1
+        true_positive = 0
+        false_positive = 0
+        true_negative = 0
+        false_negative = 0
+        if actual[i] == 1 and predicted[i] == 1:
+            true_positive += 1
+        if actual[i] == 1 and predicted[i] == 0:
+            false_negative += 1
+        if actual[i] == 0 and predicted[i] == 1:
+            false_positive += 1
+        if actual[i] == 0 and predicted[i] == 0:
+            true_negative += 1
+    prec.append([true_positive, true_negative, false_positive, false_negative])
     return correct / float(len(actual)) * 100.0
 
 # Evaluate an algorithm using a cross validation split
@@ -220,7 +239,7 @@ def back_propagation(train, test, l_rate, n_epoch, n_hidden):
 # Test Backprop on Seeds dataset
 seed(1)
 # load and prepare data
-filename = 'seeds_dataset.csv'
+filename = '/home/student/203/5-Sem/sc/lab3 (backpropagation)/SPECT.csv'
 dataset = load_csv(filename)
 for i in range(len(dataset[0])-1):
     str_column_to_float(dataset, i)
@@ -230,11 +249,25 @@ str_column_to_int(dataset, len(dataset[0])-1)
 minmax = dataset_minmax(dataset)
 normalize_dataset(dataset, minmax)
 # evaluate algorithm
-n_folds = 5
+n_folds = 10
 l_rate = 0.3
 n_epoch = 500
 n_hidden = 5
 scores = evaluate_algorithm(
     dataset, back_propagation, n_folds, l_rate, n_epoch, n_hidden)
-print('Scores: %s' % scores)
+print('Scores:')
+for i in range(len(scores)):
+    print(i+1, ": ", scores[i])
 print('Mean Accuracy: %.3f%%' % (sum(scores)/float(len(scores))))
+ttp = 0
+ttn = 0
+tfp = 0
+tfn = 0
+for i in range(len(prec)):
+    ttp += prec[i][0]
+    ttn += prec[i][1]
+    tfp += prec[i][2]
+    tfn += prec[i][3]
+print(ttp, ttn, tfp, ttn)
+print('Precision: ', ttp / (ttp + tfp))
+print('Recall: ', ttp / (ttp + tfn))
