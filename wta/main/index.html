@@ -1,30 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-    <!-- head start -->
-    <head>
-        <!-- Meta tags -->
-        <meta charset="utf-8">
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- head start -->
 
-        <title>Classroom Management</title>
+<head>
+    <!-- Meta tags -->
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- Stylesheets -->
-        <link rel="stylesheet" href="assets/css/style.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Classroom Management</title>
+    <!-- Stylesheets -->
+    <link href="assets/css/style.css" rel='stylesheet' type='text/css' media="all">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+    <!-- Js scripts -->
+    <script src="assets/js/script.js" type="text/javascript"></script>
+</head>
+<!-- Head end -->
+<!-- Body start -->
 
-        <!-- Js scripts -->
-        <script src="assets/js/script.js" type="text/javascript"></script> 
-    </head>
-    <!-- Head end -->
-    <!-- Body start -->
-    <body>
+<body>
+    <div id="header">
         <!-- header for page starts -->
         <header>
         </header>
         <!-- header for page ends -->
-        
+
         <!-- navbar begin -->
         <div class="topnav" id="myTopnav">
             <a href="https://nitk.ac.in">National Institute of Technology, Karnataka</a>
@@ -38,72 +40,35 @@
             </div>
         </section>
 
-        <button class="tablink" onclick="openPage('Home', this, 'red')">Home</button>
+        <a href="index.html"><button class="tablink" id="defaultOpen">Home</button></a>
         <a href="login.html"><button class="tablink" id="defaultOpen">Log in</button></a>
         <a href="sign-up.html"><button class="tablink">Sign Up</button></a>
         <button class="tablink" onclick="openPage('About', this, 'orange')">About</button>
+    </div>
 
-        <div id="Home" class="tabcontent">
-            <h3>Hello</h3>
-            <p>Home is where the heart is..</p>
-        </div>
-
-        <div id="Login" class="tabcontent">
-            <h3>Login</h3>
-            <p>Some news this fine day!</p> 
-        </div>
-
-        <div id="SignUp" class="tabcontent">
-            <h3>Sign Up</h3>
-            <br>
-            <form action="#" method="post">
-                <div class="sign-up-form">
-                    <input type="text" name="Name" placeholder=" Name" required="">
-
-                    <div class="clear"></div>
-                </div>
-                <div class="sign-up-form">
-                    <input type="text" name="Phone" placeholder="Phone" required="">
-
-                    <div class="clear"></div>
-                </div>
-                <div class="sign-up-form">
+    <div id="forms">
+        <h3>WELCOME TO THE CLASSROOM MANAGER</h3>
+        To subscribe to the latest on what's happening in class, please drop your email ID here
+        <div class="mid-class">
+            <form name="collect-email" onsubmit="validateEmailForm()">
+                <div class="form-div">
                     <input type="email" name="email" placeholder="Email" required="">
+                </div>
 
-                    <div class="clear"></div>
-                </div>
-                <div class="sign-up-form ">
-                    <input type="password" name="password" placeholder="Password" required="">
-                    <div class="clear"></div>
-                </div>
-                <div class="main-two-w3ls">
-                    <div class="left-side-forget">
-                        <input type="checkbox" class="checked">
-                        <span class="remenber-me">Remember me </span>
-                    </div>
-                    <div class="right-side-forget">
-                        <a href="#" class="for">Forgot password...?</a>
-                    </div>
-                </div>
                 <div class="btnn">
-                    <button type="submit">Sign Up </button>
+                    <button type="submit">Subcribe me!</button>
                 </div>
             </form>
+            <div class="clear"></div>
         </div>
+    </div>
 
-        <div id="About" class="tabcontent">
-            <h3>About</h3>
-            <p>Who we are and what we do.</p>
-        </div>
+    <!-- Footer begins -->
+    <footer>
+        <a href="#">Copyright</a>
+    </footer>
+    <!-- Footed ends -->
+</body>
+<!-- Body end -->
 
-        <section id="">
-
-        </section>
-
-        <!-- Footer begins -->
-        <footer>
-        </footer>
-        <!-- Footed ends -->
-    </body>
-    <!-- Body end -->
 </html>

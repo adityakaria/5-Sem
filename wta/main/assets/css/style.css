@@ -1,11 +1,13 @@
-@import url(//fonts.googleapis.com/css?family=Open+Sans:400,300,600);
-@import url(//fonts.googleapis.com/css?family=Roboto:400,100,300,500,700);
-@import url(//fonts.googleapis.com/css?family=Volkhov:400italic);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600);
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700);
+@import url(https://fonts.googleapis.com/css?family=Volkhov:400italic);
 
+html {
+    min-height: 100%;
+}
 body, html {
     font-family: 'Open Sans', sans-serif;
     margin: 0;
-    height: 100%;
     /* -webkit-font-smoothing: antialiased; */
 }
 
@@ -143,14 +145,145 @@ a:active {
     background-color: orange;
 }
 
+#forms {
+    margin: 10%;
+    /* text-align: center; */
+    width: 30%;
+}
 
-.sign-up-form {
-    display: flex;
-    display: -webkit-flex;
+#forms .form-div {
+    width: 100%;
+    position: relative;
+    margin: 5px;
+    /* border: 5px solid red; */
     border: none;
+    border-bottom: 1px solid #a5a2a2;
+}
+#forms .form-div input[type="text"],.form-div input[type="email"], .form-div input[type="password"] {
+    position: relative;
+    width: 100%;
+    height: 20px;
+    border: none; 
+    /* border-left:1px solid #a5a2a2;  */
+    outline: none;
+}
+#forms .form-div:hover {
+    /* width:25%; */
+    border-bottom:1px solid #67e878;
+}
+#forms .form-div:hover span {
+    color:#67e878;
+}
+#forms .form-div:hover.form-div input[type="email"],
+#forms .form-div:hover.form-div input[type="password"],
+#forms .form-div:hover.form-div input[type="text"] { 
+    border-bottom:1px solid #67e878; 
+}
+#forms .form-div span {
+    border: none;
+    text-align: center;
+    color: #cccccc;
     transition: 0.5s all;
     -webkit-transition: 0.5s all;
     -moz-transition: 0.5s all;
     -o-transition: 0.5s all;
     -ms-transition: 0.5s all;
+}
+#forms .remember-me {
+    margin-top: 20px;
+}
+#forms button[type=submit] {
+    margin: 10px;
+    background: #67e878;
+    outline: none;
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+	border-radius: 10px;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+    /* box-shadow: 0px 0px 8px 0px #60f574; */
+}
+#forms button[type=submit]:hover,a.for:hover,.more-btn a:hover{
+    opacity:0.8;
+}
+#forms ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+     color:#b7b6b6;
+}
+#forms ::-moz-placeholder { /* Firefox 19+ */
+    color:#b7b6b6;
+}
+#forms :-ms-input-placeholder { /* IE 10+ */
+     color:#b7b6b6;
+}
+#forms :-moz-placeholder { /* Firefox 18- */
+    color:#b7b6b6;
+}
+#forms input.checked {
+    cursor: pointer;
+}
+#forms .left-side-forget {
+    position: relative;
+}
+#forms .remenber-me, a.for {
+    color: #757272;
+    letter-spacing: 0px;
+    text-transform: capitalize;
+}
+#forms .remenber-me {
+    margin-left: 31px;
+    font-size: 13px;
+}
+#forms .left-side-forget, .right-side-forget {
+    text-align: left;
+    box-sizing: border-box;
+}
+#forms .for {
+    font-size: 13px;
+}
+#forms .more-btn h3 {
+    color: #a0a0a0;
+    letter-spacing: 0px;
+    /* font-weight: 800; */
+}
+#forms .more-btn p {
+    color: #a0a0a0;
+    /* letter-spacing: 0px; */
+    /* font-weight: 800; */
+}
+#forms .more-btn a {
+    /* font-size: 20px; */
+    color: #e80000;
+    font-weight: bold;
+    text-decoration: none;
+    margin-left: 10px;
+    text-transform: capitalize;
+    display: inline-block;
+    letter-spacing: 0px;
+    outline: none;
+}
+
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    overflow: hidden;
+    background-color: #333;
+}
+
+footer a {
+    display: block;
+    color: rgb(134, 134, 134);
+    font-weight:1000;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
 }
