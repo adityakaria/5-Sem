@@ -34,6 +34,8 @@ function myFunction() {
 
 function validateSignUpForm() {
   var user_name = document.forms["sign-up"]["Name"].value;
+  // var roll_no = document.forms["sign-up"]["Roll-no"].value;
+  var roll_no = '171IT203';
   var phone_no = document.forms["sign-up"]["Phone"].value;
   var email_id = document.forms["sign-up"]["email"].value;
   var user_password = document.forms["sign-up"]["password"].value;
@@ -41,22 +43,35 @@ function validateSignUpForm() {
   if (user_password !== user_password_confirm) {
     alert("Passwords do not match. Try again!")
   }
-  else if (user_name != "") {
+  // else if (!/^\d{10}$/.test(phone_no)) {
+  //   alert("phone number must be 10 digits in length")
+  // }
+  // else if (!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,20}$/.test(user_password)) {
+  //   alert("Password must contain atleast on digit, one lowercase and one uppercase alphabets and must be atleast 4 - 20 characters in length!")
+  // }
+  else if (!/^[1-2][0-9][1-5](CO|IT|EC|EE|ME|MA|CV|CH|CS|MT|BT)([0-9]){3}$/.test(roll_no)) {
+    alert("Roll no not right")
+  }
+  else {
     alert("Welcome " + user_name + "\nYour Account is Successfully created");
-    window.open('', '_blank');
+    // window.open('', '_blank');
   }
 
 }
 
 function validateLoginForm() {
-  var user_name = document.forms["login"]["Name"].value;
-  var phone_no = document.forms["login"]["Phone"].value;
   var email_id = document.forms["login"]["email"].value;
   var user_password = document.forms["login"]["password"].value;
-  if (user_name != "") {
-    alert("Welcome " + user_name + "\nYour Account is Successfully created");
+  if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email_id)){
+    alert("You have entered an invalid email address!");
   }
-  window.open('', '_blank');
+  else if (!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,20}$/.test(user_password)) {
+    alert("Password must contain atleast on digit, one lowercase and one uppercase alphabets and must be atleast 4 - 20 characters in length!")
+  }
+  else {
+    alert("Login Successful");
+    window.open('sign-up.html', '_blank');
+  }
 }
 
 function validateEmailForm() {
@@ -66,4 +81,18 @@ function validateEmailForm() {
   }
 }
 
-
+function startTime() {
+  var today = new Date();
+  var h = today.getHours();
+  var m = today.getMinutes();
+  var s = today.getSeconds();
+  m = checkTime(m);
+  s = checkTime(s);
+  document.getElementById('txt').innerHTML =
+  h + ":" + m + ":" + s;
+  var t = setTimeout(startTime, 500);
+}
+function checkTime(i) {
+  if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+  return i;
+}

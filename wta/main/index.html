@@ -20,7 +20,7 @@
 <!-- Head end -->
 <!-- Body start -->
 
-<body>
+<body onload="startTime()">
     <div id="header">
         <!-- header for page starts -->
         <header>
@@ -45,9 +45,35 @@
         <a href="sign-up.html"><button class="tablink">Sign Up</button></a>
         <button class="tablink" onclick="openPage('About', this, 'orange')">About</button>
     </div>
-
+    <br>
     <div id="forms">
         <h3>WELCOME TO THE CLASSROOM MANAGER</h3>
+        Add new event in class here
+        <div class="mid-class">
+            <form name="add-event" onsubmit="validateEventForm()">
+                <div class="form-div">
+                    <input type="text" name="heading" placeholder="Heading" required="">
+                </div>
+                <div class="form-div">
+                    <textarea name="body" rows="10" cols="55">
+                        
+                    </textarea> 
+                </div>
+                <div class="form-div-radio">
+                    <input type="radio" name="category" value="announcement" checked> Announcement
+                    <input type="radio" name="category" value="assignment"> Assignment
+                    <input type="radio" name="category" value="other"> other
+                </div>
+                <div class="form-div-file">
+                    Select a file: <input type="file" name="myFile">
+                </div>
+                <div class="btnn">
+                    <button type="submit">Post</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="forms">
         To subscribe to the latest on what's happening in class, please drop your email ID here
         <div class="mid-class">
             <form name="collect-email" onsubmit="validateEmailForm()">
@@ -62,7 +88,10 @@
             <div class="clear"></div>
         </div>
     </div>
-
+    <div class="date-time">
+        <p>Time:  <span id="txt"></span>
+    </div>
+   
     <!-- Footer begins -->
     <footer>
         <a href="#">Copyright</a>

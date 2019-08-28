@@ -56,7 +56,7 @@ a:active {
 .topnav a {
     float: middle;
     display: block;
-    color: rgb(179, 24, 24);
+    color: rgb(107, 107, 107);
     font-weight:1000;
     text-align: center;
     padding: 14px 16px;
@@ -146,7 +146,7 @@ a:active {
 }
 
 #forms {
-    margin: 10%;
+    margin: 5%;
     /* text-align: center; */
     width: 30%;
 }
@@ -178,6 +178,9 @@ a:active {
 #forms .form-div:hover.form-div input[type="password"],
 #forms .form-div:hover.form-div input[type="text"] { 
     border-bottom:1px solid #67e878; 
+}
+#forms .form-div-radio {
+    font-size: 12px;
 }
 #forms .form-div span {
     border: none;
@@ -271,7 +274,7 @@ a:active {
 
 
 footer {
-    position: absolute;
+    position: static;
     bottom: 0;
     width: 100%;
     overflow: hidden;
@@ -286,4 +289,7 @@ footer a {
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
+}
+.date-time {
+    float:left;
 }
