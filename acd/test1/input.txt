@@ -1,0 +1,7 @@
+#include <stdio.h>
+int main(){
+    //something
+    scanf("%s");
+    printf("Testing");
+    return 0;
+}

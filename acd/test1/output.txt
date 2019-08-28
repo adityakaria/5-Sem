@@ -1,0 +1,6 @@
+Enter the string of vowels and consonents:#nshqzij <xyint.m>
+nsy rfns(){
+    //xtrjymnsl
+    uwnsyk("Tjxynsl");
+    wjyzws 0;
+}
