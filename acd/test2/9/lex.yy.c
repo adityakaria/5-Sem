@@ -1775,7 +1775,7 @@ int yywrap(){}
 int main(){ 
 
 yylex(); 
-printf("\nNumber of Captial letters "
+printf("\nNumber of words "
 	"in the given input - %d\n", count); 
 
 return 0; 
