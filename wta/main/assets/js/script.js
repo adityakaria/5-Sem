@@ -34,27 +34,26 @@ function myFunction() {
 
 function validateSignUpForm() {
   var user_name = document.forms["sign-up"]["Name"].value;
-  // var roll_no = document.forms["sign-up"]["Roll-no"].value;
-  var roll_no = '171IT203';
+  var roll_no = document.forms["sign-up"]["Roll-no"].value;
   var phone_no = document.forms["sign-up"]["Phone"].value;
   var email_id = document.forms["sign-up"]["email"].value;
   var user_password = document.forms["sign-up"]["password"].value;
   var user_password_confirm = document.forms["sign-up"]["confirm_password"].value;
   if (user_password !== user_password_confirm) {
-    alert("Passwords do not match. Try again!")
+    alert("Passwords do not match. Try again!");
   }
-  // else if (!/^\d{10}$/.test(phone_no)) {
-  //   alert("phone number must be 10 digits in length")
-  // }
-  // else if (!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,20}$/.test(user_password)) {
-  //   alert("Password must contain atleast on digit, one lowercase and one uppercase alphabets and must be atleast 4 - 20 characters in length!")
-  // }
+  else if (!/^\d{10}$/.test(phone_no)) {
+    alert("phone number must be 10 digits in length")
+  }
+  else if (!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,20}$/.test(user_password)) {
+    alert("Password must contain atleast on digit, one lowercase and one uppercase alphabets and must be atleast 4 - 20 characters in length!");
+  }
   else if (!/^[1-2][0-9][1-5](CO|IT|EC|EE|ME|MA|CV|CH|CS|MT|BT)([0-9]){3}$/.test(roll_no)) {
-    alert("Roll no not right")
+    alert("Roll no not right");
   }
   else {
     alert("Welcome " + user_name + "\nYour Account is Successfully created");
-    // window.open('', '_blank');
+    window.open('', '_blank');
   }
 
 }

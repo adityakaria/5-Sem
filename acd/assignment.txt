@@ -1,0 +1,10 @@
+Assignments on LEX
+1. Write a lex program to find the length of the longest word in the input file and reverse it.
+2. Program to count number of scanf and printf statement in a “C” program & replace them with readf and writef statements.
+3. Write a lex program replaces every letter with the one five letters after in alphabetical order, wrapping around at Z.i.e.,b replaced by g, w by b,etc.
+4. Write a lex program to count the numbers of comment lines and identifiers in a given program. Also eliminate them and copy that program into separate file.
+5. Write a lex program to recognize a valid arithmetic expression and identify the identifiers and operators present. Print them separately.
+6. Write a lex program to recognize whether a given sentence is simple or compound. 
+7. Implementation of lexical analyzer using lex tool.
+8. Count of Words ending with ab.
+9. Write a Lex program to find and replace string.

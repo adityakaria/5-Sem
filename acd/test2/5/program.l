@@ -12,12 +12,11 @@ int count = 0;
 %% 
 
 
-int yywrap(){} 
-int main(){ 
+int yywrap(){}
+int main(){
+	yylex(); 
+	printf("\nNumber of Captial letters "
+		"in the given input - %d\n", count); 
 
-yylex(); 
-printf("\nNumber of Captial letters "
-	"in the given input - %d\n", count); 
-
-return 0; 
+	return 0; 
 } 
