@@ -1,45 +1,14 @@
-CREATE TABLE Employee (Fname varchar(25), 
-			Minit varchar(1),
-			Lname varchar(25),
-			Ssn int(9) NOT NULL,
-			Bdate date,
-			Address varchar(100),
-			Sex char(1),
-			Salary int(5),
-			Super_ssn int(9),
-			Dno int(5),
-			PRIMARY KEY (Ssn));
+CREATE TABLE Employee (Fname varchar(25), Minit varchar(1),Lname varchar(25),Ssn int(9) NOT NULL, Bdate date, Address varchar(100), Sex char(1), Salary int(5), Super_ssn int(9), Dno int(5), PRIMARY KEY (Ssn));
 
-CREATE TABLE Department (Dname varchar(25),
-			Dnumber int(5) NOT NULL,
-			Mgr_ssn int(9) NOT NULL,
-			Mgr_start_date date,
-			PRIMARY KEY (Dnumber),
-			FOREIGN KEY (Mgr_ssn) REFERENCES Employee (Ssn));
+CREATE TABLE Department (Dname varchar(25), Dnumber int(5) NOT NULL, Mgr_ssn int(9) NOT NULL, Mgr_start_date date, PRIMARY KEY (Dnumber), FOREIGN KEY (Mgr_ssn) REFERENCES Employee (Ssn));
 
-CREATE TABLE Dept_locations(DNumber int(5) NOT NULL,
-			DLocation varchar(25) NOT NULL,
-			FOREIGN KEY (DNumber) REFERENCES Department (Dnumber));
+CREATE TABLE Dept_locations(DNumber int(5) NOT NULL, DLocation varchar(25) NOT NULL, FOREIGN KEY (DNumber) REFERENCES Department (Dnumber));
 
-CREATE TABLE Project(Pname varchar(25),
-			Pnumber int(5) NOT NULL,
-			Plocation varchar(25),
-			Dnum int(5),
-			PRIMARY KEY (Pnumber),
-			FOREIGN KEY (Dnum) REFERENCES Department (Dnumber));
+CREATE TABLE Project(Pname varchar(25), Pnumber int(5) NOT NULL, Plocation varchar(25), Dnum int(5), PRIMARY KEY (Pnumber), FOREIGN KEY (Dnum) REFERENCES Department (Dnumber));
 
-CREATE TABLE Works_on(Essn int(9) NOT NULL,
-			Pno int(5) NOT NULL,
-			Hours decimal(3,1),
-			FOREIGN KEY (Essn) REFERENCES Employee (Ssn),
-			FOREIGN KEY (Pno) REFERENCES Project (Pnumber));
+CREATE TABLE Works_on(Essn int(9) NOT NULL, Pno int(5) NOT NULL, Hours decimal(3,1), FOREIGN KEY (Essn) REFERENCES Employee (Ssn), FOREIGN KEY (Pno) REFERENCES Project (Pnumber));
 
-CREATE TABLE Dependent(Essn int(9) NOT NULL,
-			Dependent_name varchar(25) NOT NULL,
-			Sex char(1),
-			Bdate date,
-			Relationship varchar(10),
-			FOREIGN KEY (Essn) REFERENCES Employee (Ssn));
+CREATE TABLE Dependent(Essn int(9) NOT NULL, Dependent_name varchar(25) NOT NULL, Sex char(1), Bdate date, Relationship varchar(10), FOREIGN KEY (Essn) REFERENCES Employee (Ssn));
 
 
 INSERT INTO Employee (Fname, Minit, Lname, Ssn, Bdate, Address, Sex, Salary, Super_Ssn, Dno) VALUES ('John', 'B', 'Smith', 123456789, '1965-01-09', '731 Fondren, Houston, TX', 'M', 30000, 333445555, 5);

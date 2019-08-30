@@ -1,0 +1,68 @@
+Simple queries on Joins:
+
+1) Retrieve the name, birthdate and address of every employee who works for the ‘administration’ department.
+
+    SELECT Fname, Lname, bdate, Address FROM Employee WHERE Dno = (SELECT Dnumber FROM Department WHERE Dname = 'Administration');
+
+2) Find the sum of the salaries of all employees of the ‘Research’
+department, as well as the maximum salary, the minimum salary, and the average salary in this department.
+
+    SELECT Sum(Salary) FROM Employee WHERE Dno = (SELECT Dnumber FROM Department WHERE Dname = 'Research') GROUP BY Dno;
+
+    SELECT Max(Salary) FROM Employee WHERE Dno = (SELECT Dnumber FROM Department WHERE Dname = 'Research') GROUP BY Dno;
+
+    SELECT Min(Salary) FROM Employee WHERE Dno = (SELECT Dnumber FROM Department WHERE Dname = 'Research') GROUP BY Dno;
+
+    SELECT Avg(Salary) FROM Employee WHERE Dno = (SELECT Dnumber FROM Department WHERE Dname = 'Research') GROUP BY Dno;
+
+    SELECT Sum(Salary), Max(Salary), Min(Salary), Avg(Salary) FROM Employee WHERE Dno = (SELECT Dnumber FROM Department WHERE Dname = 'Research') GROUP BY Dno;
+
+3) Retrieve the number of employees in the ‘administration’ department
+
+    SELECT Count(ssn) FROM Employee WHERE Dno = (SELECT Dnumber FROM Department WHERE Dname = 'Administration');
+
+4) For each project, retrieve the project number, the project name, and the number of employees who work on that project.
+
+5) For each project, retrieve the project number, the project name, project location and the number of employees from department 5 who work on the project.
+
+6) For every project located in ‘Houston’, list the project number, the controlling department number, and the department manager’s last name, address.
+
+7) Retrieve a list of employees and the projects they are working on, ordered by department and, within each department, ordered alphabetically by the first name then by last name.
+
+8) Retrieve the names of all employees who do not have supervisors.
+
+   
+9) Retrieve the names of all employees whose supervisor’s supervisor has ‘987654321’ for Ssn.
+
+
+10) Retrieve  the department name, manager name, and manager salary for every department.
+
+11)  Retrieve the employee name, supervisor name, and employee salary for each employee who works in the ‘Research’ department.
+
+
+12)  Retrieve the project name, controlling department name, number of employees, and total hours worked per week on the project for each project.
+
+	
+13) Retrieve the project name, controlling department name, number of employees, and total hours worked per week on the project for each project with more than one employee working on it.
+
+	
+14) Find the names of employees who work on all the projects controlled by department number 5.
+
+
+15) Retrieve the names of all employees in department 5 who work more than 10 hours per week on the ProductX project.
+
+
+16) List the names of all employees who have a dependent with the same first name as themselves.
+
+17)   Find the names of all employees who are directly supervised by ‘Franklin Wong’.
+
+
+18)  For each project, list the project name and the total hours per week (by all employees) spent on that project.
+
+
+19)  Retrieve the average salary of all female employees.
+
+
+
+
+
