@@ -35,6 +35,8 @@ department, as well as the maximum salary, the minimum salary, and the average s
 
 7) Retrieve a list of employees and the projects they are working on, ordered by department and, within each department, ordered alphabetically by the first name then by last name.
 
+    SELECT p.Dnum, e.Fname, e.Lname FROM Project p, Employee e, Works_on w WHERE e.Ssn = w.Essn AND p.Pnumber = w.Pno ORDER BY p.Dnum, e.Fname, e.Lname;
+
     SELECT * FROM Project p, Employee e, Works_on w WHERE e.Ssn = w.Essn AND p.Pnumber = w.Pno ORDER BY p.Dnum, e.Fname, e.Lname;
 
 8) Retrieve the names of all employees who do not have supervisors.
@@ -53,7 +55,7 @@ department, as well as the maximum salary, the minimum salary, and the average s
 
 11)  Retrieve the employee name, supervisor name, and employee salary for each employee who works in the ‘Research’ department.
 
-    SELECT e.Fname,e.Minit,e.Lname,e1.Fname,e1.Minit,e1.Lname,e.Salary FROM Employee e, Employee e1 WHERE e.Super_ssn = e1.Ssn AND e.Dno = (SELECT Dnumber FROM Department WHERE Dname = 'Research');
+    SELECT e.Fname,e.Minit,e.Lname,k.Fname,k.Minit,k.Lname,e.Salary FROM Employee e, Employee k WHERE e.Super_ssn = k.Ssn AND e.Dno = (SELECT Dnumber FROM Department WHERE Dname = 'Research');
 
 
 12)  Retrieve the project name, controlling department name, number of employees, and total hours worked per week on the project for each project.
@@ -80,7 +82,7 @@ department, as well as the maximum salary, the minimum salary, and the average s
 
 17)   Find the names of all employees who are directly supervised by ‘Franklin Wong’.
 
-    SELECT e.Fname,e.Minit,e.Lname FROM Employee e, Employee e1 WHERE e.Super_ssn = e1.Ssn and e1.Fname = 'Franklin' and e1.Lname = 'Wong';
+    SELECT e.Fname,e.Minit,e.Lname FROM Employee e, Employee k WHERE e.Super_ssn = k.Ssn and k.Fname = 'Franklin' and k.Lname = 'Wong';
 
 
 18)  For each project, list the project name and the total hours per week (by all employees) spent on that project.
