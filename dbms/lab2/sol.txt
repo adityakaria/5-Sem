@@ -35,6 +35,3 @@ SELECT e.Fname,e.Minit,e.Lname FROM Employee e, Employee e1 WHERE e.Super_ssn = 
 SELECT p.Pname, SUM(w.Hours) FROM Project p, Works_on w WHERE w.Pno = p.Pnumber GROUP BY p.Pnumber;
 
 SELECT AVG(Salary) FROM Employee WHERE Sex = 'F';
-
-
-sadfushfdf
