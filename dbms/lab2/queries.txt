@@ -23,45 +23,73 @@ department, as well as the maximum salary, the minimum salary, and the average s
 
 4) For each project, retrieve the project number, the project name, and the number of employees who work on that project.
 
+    SELECT p.Pnumber,p.Pname,COUNT(*) as employees FROM Project p, Employee e, Works_on w WHERE e.Ssn = w.Essn AND p.Pnumber = w.Pno GROUP BY p.Pnumber;
+
 5) For each project, retrieve the project number, the project name, project location and the number of employees from department 5 who work on the project.
+
+    SELECT p.Pnumber,p.Pname,COUNT(*) as employees FROM Project p, Employee e, Works_on w WHERE e.Ssn = w.Essn AND p.Pnumber = w.Pno and p.Dnum = 5 GROUP BY p.Pnumber;
 
 6) For every project located in ‘Houston’, list the project number, the controlling department number, and the department manager’s last name, address.
 
+    SELECT p.Pnumber, p.Dnum, e.Lname, e.Address from Project p, Employee e WHERE e.Ssn = (SELECT Mgr_ssn FROM Department WHERE Dnumber = p.Dnum) AND p.Plocation = 'Houston';
+
 7) Retrieve a list of employees and the projects they are working on, ordered by department and, within each department, ordered alphabetically by the first name then by last name.
 
+    SELECT * FROM Project p, Employee e, Works_on w WHERE e.Ssn = w.Essn AND p.Pnumber = w.Pno ORDER BY p.Dnum, e.Fname, e.Lname;
+
 8) Retrieve the names of all employees who do not have supervisors.
+
+    SELECT Fname,Minit,Lname FROM Employee WHERE Super_ssn IS NULL;
 
    
 9) Retrieve the names of all employees whose supervisor’s supervisor has ‘987654321’ for Ssn.
 
+    SELECT Fname,Minit,Lname FROM Employee WHERE Super_ssn IN (SELECT Ssn FROM Employee WHERE Super_ssn = 987654321);
+
 
 10) Retrieve  the department name, manager name, and manager salary for every department.
 
+    SELECT d.Dname, e.Fname, e.Minit, e.Lname, e.Salary FROM Department d, Employee e WHERE d.Mgr_ssn = e.Ssn;
+
 11)  Retrieve the employee name, supervisor name, and employee salary for each employee who works in the ‘Research’ department.
+
+    SELECT e.Fname,e.Minit,e.Lname,e1.Fname,e1.Minit,e1.Lname,e.Salary FROM Employee e, Employee e1 WHERE e.Super_ssn = e1.Ssn AND e.Dno = (SELECT Dnumber FROM Department WHERE Dname = 'Research');
 
 
 12)  Retrieve the project name, controlling department name, number of employees, and total hours worked per week on the project for each project.
 
+    SELECT p.Pname, d.Dname, COUNT(*), sum(w.Hours) FROM Project p, Department d, Employee e, Works_on w WHERE p.Dnum = d.Dnumber AND e.Ssn = w.Essn AND p.Pnumber = w.Pno GROUP BY p.Pnumber;
 	
 13) Retrieve the project name, controlling department name, number of employees, and total hours worked per week on the project for each project with more than one employee working on it.
+
+    SELECT p.Pname, d.Dname, COUNT(*), sum(w.Hours) FROM Project p, Department d, Employee e, Works_on w WHERE p.Dnum = d.Dnumber AND e.Ssn = w.Essn AND p.Pnumber = w.Pno GROUP BY p.Pnumber HAVING COUNT(*) > 1;
 
 	
 14) Find the names of employees who work on all the projects controlled by department number 5.
 
+    SELECT e.Fname,e.Minit,e.Lname FROM Employee e, Project p, Works_on w WHERE e.Ssn = w.Essn AND w.Pno = p.Pnumber AND p.Dnum = 5;
 
 15) Retrieve the names of all employees in department 5 who work more than 10 hours per week on the ProductX project.
+
+    SELECT e.Fname,e.Minit,e.Lname FROM Employee e, Project p, Works_on w WHERE w.Essn = e.Ssn AND w.Pno = p.Pnumber and p.Pname = 'ProductX' AND w.Hours > 10;
 
 
 16) List the names of all employees who have a dependent with the same first name as themselves.
 
+    SELECT e.Fname,e.Minit,e.Lname FROM Employee e, Dependent d WHERE e.Fname = d.Dependent_name;
+
 17)   Find the names of all employees who are directly supervised by ‘Franklin Wong’.
+
+    SELECT e.Fname,e.Minit,e.Lname FROM Employee e, Employee e1 WHERE e.Super_ssn = e1.Ssn and e1.Fname = 'Franklin' and e1.Lname = 'Wong';
 
 
 18)  For each project, list the project name and the total hours per week (by all employees) spent on that project.
 
+    SELECT p.Pname, SUM(w.Hours) FROM Project p, Works_on w WHERE w.Pno = p.Pnumber GROUP BY p.Pnumber;
 
 19)  Retrieve the average salary of all female employees.
 
+    SELECT AVG(Salary) FROM Employee WHERE Sex = 'F';
 
 
 
