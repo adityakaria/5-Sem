@@ -1,22 +1,24 @@
 
 %{ 
-int count = 0; 
+int COMMENT=0;
 %} 
-
+identifier [a-zA-Z][a-zA-Z0-9]*
 
 %% 
-[A-Z] {printf("%s capital letter\n", yytext); 
-	count++;} 
-.	 {printf("%s not a capital letter\n", yytext);} 
-\n {return 0;} 
+\/\/.*								   {COMMENT=1; printf("\n\t %s: COMMENT",yytext);}
+{identifier}(\[[0-9]*\])? 				{if(!COMMENT) printf("\n %s IDENTIFIER",yytext);}
+= 										{if(!COMMENT)printf("\n\t %s: ASSIGNMENT OPERATOR",yytext);}
+\<= |
+\>= |
+\< |
+== |
+\> 										{if(!COMMENT) printf("\n\t%s:  RELATIONAL OPERATOR",yytext);}
 %% 
 
 
 int yywrap(){}
 int main(){
 	yylex(); 
-	printf("\nNumber of Captial letters "
-		"in the given input - %d\n", count); 
 
 	return 0; 
 } 

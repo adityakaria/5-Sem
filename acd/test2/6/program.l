@@ -13,7 +13,9 @@ int count = 0;
 %% 
 
 
-int yywrap(){} 
+int yywrap(){
+	return 1;
+} 
 int main(){ 
 
 yylex(); 

@@ -15,7 +15,9 @@ space    [ \t\n]
 %% 
 
 
-int yywrap(){} 
+int yywrap(){
+	return 1;
+} 
 int main(){ 
 
 yylex(); 
