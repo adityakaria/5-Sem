@@ -13,6 +13,11 @@ identifier [a-zA-Z][a-zA-Z0-9]*
 \< |
 == |
 \> 										{if(!COMMENT) printf("\n\t%s:  RELATIONAL OPERATOR",yytext);}
+\+ |
+\- |
+\* |
+\/										{if(!COMMENT) printf("\n\t%s:  OPERATOR",yytext);}
+
 %% 
 
 
