@@ -567,10 +567,9 @@ int yy_flex_debug = 0;
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
 #line 1 "program.l"
-//Implementation of Lexical Analyzer using Lex tool
-#line 3 "program.l"
+#line 2 "program.l"
 int COMMENT=0;
-#line 574 "lex.yy.c"
+#line 573 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -788,9 +787,9 @@ YY_DECL
 		}
 
 	{
-#line 6 "program.l"
+#line 5 "program.l"
 
-#line 794 "lex.yy.c"
+#line 793 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -849,115 +848,115 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 7 "program.l"
-{printf("\n%s is a preprocessor directive",yytext);}
+#line 6 "program.l"
+{printf("\n%s: Preprocessor directive",yytext);}
 	YY_BREAK
 case 2:
-#line 9 "program.l"
+#line 8 "program.l"
 case 3:
-#line 10 "program.l"
+#line 9 "program.l"
 case 4:
-#line 11 "program.l"
+#line 10 "program.l"
 case 5:
-#line 12 "program.l"
+#line 11 "program.l"
 case 6:
-#line 13 "program.l"
+#line 12 "program.l"
 case 7:
-#line 14 "program.l"
+#line 13 "program.l"
 case 8:
-#line 15 "program.l"
+#line 14 "program.l"
 case 9:
-#line 16 "program.l"
+#line 15 "program.l"
 case 10:
-#line 17 "program.l"
+#line 16 "program.l"
 case 11:
-#line 18 "program.l"
+#line 17 "program.l"
 case 12:
-#line 19 "program.l"
+#line 18 "program.l"
 case 13:
-#line 20 "program.l"
+#line 19 "program.l"
 case 14:
-#line 21 "program.l"
+#line 20 "program.l"
 case 15:
-#line 22 "program.l"
+#line 21 "program.l"
 case 16:
-#line 23 "program.l"
+#line 22 "program.l"
 case 17:
-#line 24 "program.l"
+#line 23 "program.l"
 case 18:
 YY_RULE_SETUP
-#line 24 "program.l"
-{printf("\n\t%s is a keyword",yytext);}
+#line 23 "program.l"
+{printf("\n\t%s: Keyword",yytext);}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 25 "program.l"
-{COMMENT=1;}{printf("\n\t %s is a COMMENT",yytext);}
+#line 24 "program.l"
+{COMMENT=1;}{printf("\n\t %s: COMMENT",yytext);}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 26 "program.l"
+#line 25 "program.l"
 {if(!COMMENT)printf("\nFUNCTION \n\t%s",yytext);}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 27 "program.l"
+#line 26 "program.l"
 {if(!COMMENT)printf("\n BLOCK BEGINS");}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 28 "program.l"
+#line 27 "program.l"
 {if(!COMMENT)printf("BLOCK ENDS ");}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 29 "program.l"
+#line 28 "program.l"
 {if(!COMMENT) printf("\n %s IDENTIFIER",yytext);}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 30 "program.l"
-{if(!COMMENT)printf("\n\t %s is a STRING",yytext);}
+#line 29 "program.l"
+{if(!COMMENT)printf("\n\t %s:  STRING",yytext);}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 31 "program.l"
-{if(!COMMENT) printf("\n %s is a NUMBER ",yytext);}
+#line 30 "program.l"
+{if(!COMMENT) printf("\n %s:  NUMBER ",yytext);}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 32 "program.l"
+#line 31 "program.l"
 {if(!COMMENT)printf("\n\t");ECHO;printf("\n");}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 33 "program.l"
+#line 32 "program.l"
 ECHO;
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 34 "program.l"
-{if(!COMMENT)printf("\n\t %s is an ASSIGNMENT OPERATOR",yytext);}
+#line 33 "program.l"
+{if(!COMMENT)printf("\n\t %s: ASSIGNMENT OPERATOR",yytext);}
 	YY_BREAK
 case 29:
-#line 36 "program.l"
+#line 35 "program.l"
 case 30:
-#line 37 "program.l"
+#line 36 "program.l"
 case 31:
-#line 38 "program.l"
+#line 37 "program.l"
 case 32:
-#line 39 "program.l"
+#line 38 "program.l"
 case 33:
 YY_RULE_SETUP
-#line 39 "program.l"
-{if(!COMMENT) printf("\n\t%s is a RELATIONAL OPERATOR",yytext);}
+#line 38 "program.l"
+{if(!COMMENT) printf("\n\t%s:  RELATIONAL OPERATOR",yytext);}
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 40 "program.l"
+#line 39 "program.l"
 ECHO;
 	YY_BREAK
-#line 961 "lex.yy.c"
+#line 960 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1958,24 +1957,21 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 40 "program.l"
+#line 39 "program.l"
 
 
-int main(int argc, char **argv)
-{
-FILE *file;
-file=fopen("var.c","r");
-if(!file)
-{
-printf("could not open the file");
-exit(0);
+int main(int argc, char **argv) {
+	FILE *file;
+	file=fopen("var.c","r");
+	if(!file)
+	{
+	printf("could not open the file");
+	exit(0);
+	}
+	yyin=file;
+	yylex();
+	printf("\n");
 }
-yyin=file;
-yylex();
-printf("\n");
-return(0);
-}
-int yywrap()
-{
-return(1);
+int yywrap() {
+	return(1);
 }

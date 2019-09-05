@@ -5,9 +5,9 @@ int count = 0;
 
 
 %% 
-(\")[^\"]*(\") {printf("%s : string\n", yytext); 
+(\")[^\"]*(\") {printf("\"STRING\""); 
 	count++;}
-.	 ;
+.	 printf("%s", yytext);
 \n {return 0;}
 %% 
 

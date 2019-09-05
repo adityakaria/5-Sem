@@ -746,13 +746,13 @@ case 1:
 /* rule 1 can match eol */
 YY_RULE_SETUP
 #line 8 "program.l"
-{printf("%s : string\n", yytext); 
+{printf("\"STRING\""); 
 	count++;}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
 #line 10 "program.l"
-;
+printf("%s", yytext);
 	YY_BREAK
 case 3:
 /* rule 3 can match eol */

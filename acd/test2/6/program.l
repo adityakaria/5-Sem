@@ -6,10 +6,11 @@ int count = 0;
 
 %% 
 (and)|(or)|(but)|(yet)|(although)|(because)|(nor)|(for)|(so)   {count=1;}
-\n 																{	if (count==1) printf("\nCompound");
-																	else printf("\nSimple");
+\n 																{	if (count==1) printf("Compound\n");
+																	else printf("Simple\n");
 																	return 0;
 																}
+.																{;}
 %% 
 
 
