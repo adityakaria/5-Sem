@@ -1,0 +1,3 @@
+NB Without GA: 
+	Accuracy:  80.14245014245014
+NB using GA: 

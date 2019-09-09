@@ -78,7 +78,7 @@ def mutate(dna):
     """
     dna_out = ""
     mutation_chance = 100
-    for c in xrange(DNA_SIZE):
+    for c in range(DNA_SIZE):
         if int(random.random()*mutation_chance) == 1:
             dna_out += random_char()
         else:
