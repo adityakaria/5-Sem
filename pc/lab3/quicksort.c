@@ -147,18 +147,18 @@ void quickSort_parallel(lld arr[], lld low, lld high)
 {
 	if (low < high)
 	{
-		// pi is partitioning index, arr[p] is now at right place
+
 		lld pi;
-		#pragma omp task shared(pi)
-			pi = partition(arr, low, high);
+#pragma omp task shared(pi)
+		pi = partition(arr, low, high);
 
-		// Separately sort elements before partition
-		#pragma omp taskwait
-			quickSort_parallel(arr, low, pi - 1);
+#pragma omp taskwait
+		quickSort_parallel(arr, low, pi - 1);
+		printf("%d\n", omp_get_thread_num());
 
-		// Separately sort elements after partition
-		#pragma omp taskwait
-			quickSort_parallel(arr, pi + 1, high);
+#pragma omp taskwait
+		quickSort_parallel(arr, pi + 1, high);
+		printf("%d\n", omp_get_thread_num());
 	}
 }
 

@@ -16,135 +16,137 @@
 **
 **  HISTORY: Written by Bharath Adikar, Aug 2019
 */
-#include <omp.h> 
-#include <stdio.h> 
+#include <omp.h>
+#include <stdio.h>
 #include <stdlib.h>
 
 #define lld long long int
 
-lld fib_serial(lld n) 
+lld fib_serial(lld n)
 {
 	// Return values of fib(n-1) and fib(n-2)
-  	lld i, j; 
-  	
-	// If n is less than 2, return itself (first two elements of Fibonacci series)  
+	lld i, j;
+
+	// If n is less than 2, return itself (first two elements of Fibonacci series)
 	if (n < 2)
-        return n;
-  	else 
-  	{
-    	i = fib_serial(n-1);
-    	j = fib_serial(n-2);
-    	return i + j;
-  	}
+		return n;
+	else
+	{
+		i = fib_serial(n - 1);
+		j = fib_serial(n - 2);
+		return i + j;
+	}
 }
 
-lld fib_parallel(lld n) 
+lld fib_parallel(lld n)
 {
 	// Return values of fib(n-1) and fib(n-2)
-  	lld i, j; 
-  	
-	// If n is less than 2, return itself (first two elements of Fibonacci series)  
+	lld i, j;
+
+	// If n is less than 2, return itself (first two elements of Fibonacci series)
 	if (n < 2)
-        return n;
-  	else 
-  	{
-    	i = fib_parallel(n-1);
-    	j = fib_parallel(n-2);
-    	return i + j;
-  	}
+		return n;
+	else
+	{
+		i = fib_parallel(n - 1);
+		j = fib_parallel(n - 2);
+		return i + j;
+	}
 }
 
-lld fib_parallel_taskwait(lld n) 
+lld fib_parallel_taskwait(lld n)
 {
 	/*To get good performance you need to use a cutoff value for "n". 
 	Otherwise, too many small tasks will be generated. 
 	Once the value of "n" gets below this threshold it is best to simply execute the serial version without tasking.*/
-  	
+
 	// Return values of fib(n-1) and fib(n-2)
 	lld i, j;
 
 	// If n is less than 20, fallback to serialised generation of nth Fibonacci number.
-  	if (n < 20)
-        return fib_serial(n);
-  	else 
-  	{
-    	#pragma omp task 
-    	i = fib_parallel_taskwait(n-1);
+	if (n < 20)
+		return fib_serial(n);
+	else
+	{
+#pragma omp task
+		i = fib_parallel_taskwait(n - 1);
 
-    	#pragma omp task 
-    	j = fib_parallel_taskwait(n-2);
-    	
-		#pragma omp taskwait
-    	return i + j;
-  	}
+#pragma omp task
+		j = fib_parallel_taskwait(n - 2);
+
+#pragma omp taskwait
+		return i + j;
+	}
 }
 
-lld check_correctness(lld num, lld n){
-	if(n < 2)
-		return num-n;
+lld check_correctness(lld num, lld n)
+{
+	if (n < 2)
+		return num - n;
 
-	lld i,x1,x2,x3;
+	lld i, x1, x2, x3;
 	x1 = 0;
 	x2 = 1;
-	for(i=2;i<=n;++i){
+	for (i = 2; i <= n; ++i)
+	{
 		x3 = x1 + x2;
 		x1 = x2;
 		x2 = x3;
 	}
-	return num-x3;
+	return num - x3;
 }
 
 int main()
 {
-    lld n,answer,error;
-	double start_time,time_taken;
-	
+	lld n, answer, error;
+	double start_time, time_taken;
+
 	printf("Enter the nth fibonacci number to print\n");
-	scanf("%lld",&n);
-	
+	scanf("%lld", &n);
+
 	start_time = omp_get_wtime();
 	answer = fib_serial(n);
-	time_taken = omp_get_wtime()-start_time;
-    error = check_correctness(answer,n);
-	printf("nth fibonacci number is %lld\n",answer);
-	printf("Time taken for serial approach is %lf s\n",time_taken);
-	if(error)
-		printf("Error obtained: %lld\n",error);
+	time_taken = omp_get_wtime() - start_time;
+	error = check_correctness(answer, n);
+	printf("nth fibonacci number is %lld\n", answer);
+	printf("Time taken for serial approach is %lf s\n", time_taken);
+	if (error)
+		printf("Error obtained: %lld\n", error);
 	else
 		printf("The output obtained is correct and has no errors.\n");
 	printf("\n");
 
-    start_time = omp_get_wtime();
-    #pragma omp parallel
-    {
-        #pragma omp single
+	start_time = omp_get_wtime();
+#pragma omp parallel
+	{
+#pragma omp single
 		answer = fib_parallel(n);
-    }
-	time_taken = omp_get_wtime()-start_time;
-	error = check_correctness(answer,n);
-    printf("The nth fibonacci number is %lld\n",answer);
-	printf("Time taken for parallel approach is %lf s\n",time_taken);
-	if(error)
-		printf("Error obtained: %lld\n",error);
+	}
+	time_taken = omp_get_wtime() - start_time;
+	error = check_correctness(answer, n);
+	printf("The nth fibonacci number is %lld\n", answer);
+	printf("Time taken for parallel approach is %lf s\n", time_taken);
+	if (error)
+		printf("Error obtained: %lld\n", error);
 	else
 		printf("The output obtained is correct and has no errors.\n");
 	printf("\n");
 
-    start_time = omp_get_wtime();
-    #pragma omp parallel
-    {
-        #pragma omp single
+	start_time = omp_get_wtime();
+#pragma omp parallel
+	{
+#pragma omp single
 		answer = fib_parallel_taskwait(n);
-    }
-	time_taken = omp_get_wtime()-start_time;
-	error = check_correctness(answer,n);
-    printf("The nth fibonacci number is %lld\n",answer);
-	printf("Time taken for parallel approach with taskwait is %lf s\n",time_taken);
-	if(error)
-		printf("Error obtained: %lld\n",error);
+	}
+	time_taken = omp_get_wtime() - start_time;
+	error = check_correctness(answer, n);
+	printf("The nth fibonacci number is %lld\n", answer);
+	printf("Time taken for parallel approach with taskwait is %lf s\n", time_taken);
+	if (error)
+		printf("Error obtained: %lld\n", error);
 	else
 		printf("The output obtained is correct and has no errors.\n");
 	printf("\n");
 
 	return 0;
-} 
+}
