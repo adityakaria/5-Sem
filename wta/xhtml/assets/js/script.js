@@ -76,6 +76,85 @@ function validateEmailForm() {
 
 function validateFeedbackForm() {
   var message = document.getElementById("user_input").value;
-  var user_name = document.forms["feedback"]["Name"].value;
+  // alert(message);
+  var user_name = document.forms["feedback"]["name"].value;
+  // alert(user_name);
+  var city_name = document.getElementsByName("city")[0].value;
+  // alert("City: " + city_name);
   document.getElementById('display').innerHTML = message;
+}
+
+function validateFeedbackForm2() {
+  var message = document.getElementById("user_input2").value;
+  alert(message);
+  var email_id = document.forms['feedback2']['email'].value;
+  if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email_id)) {
+    alert("You have entered an invalid email address! it must be like abc@xyz.com");
+  }
+  var comments = document.forms['feedback2']['comments'].value;
+  if (message == null) {
+    alert("comments cant be blank");
+  }
+
+}
+var imgArray = new Array();
+
+imgArray[0] = new Image();
+imgArray[0].src = 'images/img/1.jpg';
+
+imgArray[1] = new Image();
+imgArray[1].src = 'images/img/2.jpg';
+
+imgArray[2] = new Image();
+imgArray[2].src = 'images/img/3.jpg';
+
+imgArray[3] = new Image();
+imgArray[3].src = 'images/img/4.jpg';
+
+/*------------------------------------*/
+
+function nextImage(element) {
+  var img = document.getElementById(element);
+
+  for (var i = 0; i < imgArray.length; i++) {
+    if (imgArray[i].src == img.src) // << check this
+    {
+      if (i === imgArray.length - 1) {
+        document.getElementById(element).src = imgArray[0].src;
+        break;
+      }
+      document.getElementById(element).src = imgArray[i + 1].src;
+      break;
+    }
+  }
+}
+
+function prevImage(element) {
+  var img = document.getElementById(element);
+
+  for (var i = imgArray.length - 1; i >= 0; i--) {
+    if (imgArray[i].src == img.src) // << check this
+    {
+      if (i === 0) {
+        document.getElementById(element).src = imgArray[imgArray.length - 1].src;
+        break;
+      }
+      document.getElementById(element).src = imgArray[i - 1].src;
+      break;
+    }
+  }
+}
+
+function is_empty(x) {
+  return (
+    (typeof x == 'undefined') ||
+    (x == null) ||
+    (x == false) //same as: !x
+    ||
+    (x.length == 0) ||
+    (x == "") ||
+    (x.replace(/\s/g, "") == "") ||
+    (!/[^\s]/.test(x)) ||
+    (/^\s*$/.test(x))
+  );
 }

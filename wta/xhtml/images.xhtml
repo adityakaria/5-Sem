@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1"> -->
 
-    <title>Classroom Management</title>
+    <title>Images</title>
     <!-- Stylesheets -->
     <link href="assets/css/style.css" rel='stylesheet' type='text/css' media="all" />
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -37,7 +37,7 @@
         <!-- Details of class -->
         <section id="details">
             <div class="heading">
-                <h1>Feedback Page</h1>
+                <h1>Images Page</h1>
             </div>
         </section>
 
@@ -48,52 +48,18 @@
     </div>
     <br />
     <div id="forms">
-        <h3>WE VALUE YOUR FEEDBACK</h3>
-        Please fill in the form below to let us know what you think
-        <div class="mid-class">
-            <form name="feedback" onsubmit="validateFeedbackForm()">
-                <div class="form-div">
-                    <input type="text" name="name" placeholder="Name" required="" />
-                </div>
-                <div class=" form-div">
-                    <input type="text" name="city" placeholder="City" required="" />
-                </div>
-                <div class="form-div">
-                    <textarea name="comments" rows="10" cols="55" id="user_input">
+        <h3>IMAGE</h3>
+        <div id="splash">
+            <img src="images/img/1.jpg" alt="image" id="mainImg" width="1000px" />
 
-                    </textarea>
-                </div>
-                <div class="form-div-radio">
-                    <input type="radio" name="gender" value="male" /> Male
-                    <input type="radio" name="gender" value="female" /> Female
-                    <input type="radio" name="gender" value="other" /> other
-                </div>
-                <div class="btnn">
-                    <button type="submit">Post</button>
-                </div>
-            </form>
+        </div>
+        <div id="imglist">
+            <a href="javascript:prevImage('mainImg')"><img src="images/img/6.jpg" alt="" width="50px" /></a>
+        </div>
+        <div id="imglist">
+            <a href="javascript:nextImage('mainImg')"><img src="images/img/5.png" alt="" width="50px" /></a>
         </div>
     </div>
-    <p><span id='display'></span></p>
-    <div id="forms">
-        To subscribe to the latest on what's happening in class, please drop your email ID here
-        <div class="mid-class">
-            <form name="collect-email" onsubmit="validateEmailForm()">
-                <div class="form-div">
-                    <input type="email" name="email" placeholder="Email" required="" />
-                </div>
-
-                <div class="btnn">
-                    <button type="submit">Subcribe me!</button>
-                </div>
-            </form>
-            <div class="clear"></div>
-        </div>
-    </div>
-    <!-- <div class="date-time">
-        <p>Time: <span id="txt"></span>
-    </div> -->
-
     <!-- Footer begins -->
     <footer>
         <a href="#">Copyright</a>
