@@ -1,6 +1,5 @@
 import csv
 import random
-import csv
 import math
 import os
 
