@@ -1,6 +1,6 @@
 SELECT
-  p.name,
-  ph.name
+  p.name patient,
+  ph.name physician
 FROM
   Patient p,
   Physician ph
@@ -58,9 +58,9 @@ SELECT
   p.name patient,
   ph.name physician,
   u.DateUndergoes procedure_date,
-  pr.name proc_name,
+  pr.name procedure_name,
   ph.Position physician_position,
-  t.CertificationExpires
+  t.CertificationExpires certificate_expiry_date
 FROM
   (
     (
@@ -78,3 +78,30 @@ FROM
 WHERE
   u.DateUndergoes > t.CertificationExpires;
 -- 5 ---
+SELECT
+  distinct(ph.Name) physician_not_eligible_for_procedure,
+  pr.name procedure_name,
+  u.dateUndergoes procedure_date
+FROM
+  (
+    (
+      (
+        Physician ph
+        INNER JOIN Undergoes u ON ph.EmployeeID = u.Physician
+      )
+      INNER JOIN Trained_In t ON ph.EmployeeID = t.Physician
+    )
+    INNER JOIN Procedures pr ON u.Procedures = pr.code
+  )
+WHERE
+  (
+    u.DateUndergoes > t.CertificationExpires
+    or u.Procedures not in (
+      select
+        treatment
+      from
+        Trained_In
+      where
+        Physician = ph.EmployeeID
+    )
+  );
