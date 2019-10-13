@@ -1,5 +1,0 @@
-INFO:root:================================================================================================
-INFO:root:Running Gaussian Naive Bayes classifier using the entire dataset for both training and testing.
-INFO:root:================================================================================================
-INFO:root:Priors for each class: set([])
-INFO:root:Means and variance for each class: {nan: {'Attr10': [nan, nan], 'Attr11': [nan, nan], 'Attr12': [nan, nan], 'Attr13': [nan, nan], 'Attr14': [nan, nan], 'Attr15': [nan, nan], 'Attr16': [nan, nan], 'Attr17': [nan, nan], 'Attr18': [nan, nan], 'Attr19': [nan, nan], 'Attr6': [nan, nan], 'Attr7': [nan, nan], 'Attr4': [nan, nan], 'Attr5': [nan, nan], 'Attr2': [nan, nan], 'Attr3': [nan, nan], 'Attr1': [nan, nan], 'Attr8': [nan, nan], 'Attr9': [nan, nan], 'Attr21': [nan, nan], 'Attr20': [nan, nan], 'Attr22': [nan, nan]}}
