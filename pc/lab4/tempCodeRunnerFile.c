@@ -1,0 +1,1 @@
+implemented as plain simple and OpenMP parallelised versions

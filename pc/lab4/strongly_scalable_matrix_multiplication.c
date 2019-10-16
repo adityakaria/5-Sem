@@ -1,7 +1,8 @@
 /*
 **  PROGRAM: Matrix Multiplicatin
 **
-**  PURPOSE: This is a simple program to multiply two matrices of dimensions MxN and NxM implemented as plain simple and OpenMP parallelised versions
+**  PURPOSE: This is a simple program to multiply two matrices of dimensions MxN and 
+**  NxM implemented as plain simple and OpenMP parallelised versions
 **           
 **			 The matrices are initialised such that the first matrix A contains
 **           the row index as its elements, and the second matrix B uses the
