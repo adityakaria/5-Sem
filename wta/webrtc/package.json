@@ -1,0 +1,22 @@
+{
+  "name": "webrtc-video-conference-tutorial",
+  "version": "1.0.0",
+  "description": "This tutorial is divided in three versions:",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://github.com/adityakaria/5-Sem/wta/webrtc",
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "context": "0.0.1",
+    "express": "^4.16.4",
+    "jquery": "^3.4.1",
+    "popper.js": "^1.15.0",
+    "socket.io": "^2.2.0"
+  }
+}
