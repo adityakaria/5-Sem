@@ -38,12 +38,8 @@ Then each time you use $$ or $n, its data type is determined by which symbol it 
 %token<num> POW SQRT FACTORIAL MOD
 %token<num> LOG2 LOG10
 %token<num> FLOOR CEIL ABS
-%token<num> GBP_TO_USD USD_TO_GBP 
-%token<num> GBP_TO_EURO EURO_TO_GBP 
-%token<num> USD_TO_EURO EURO_TO_USD
 %token<num> COS SIN TAN COSH SINH TANH
 %token<num> CEL_TO_FAH FAH_TO_CEL
-%token<num> M_TO_KM KM_TO_M
 %token<num> VAR_KEYWORD 
 %token<index> VARIABLE
 %token<num> EOL
@@ -59,7 +55,6 @@ Then each time you use $$ or $n, its data type is determined by which symbol it 
 %type<num> assignment
 %type<num> conversion
 %type<num> temperature_conversion
-%type<num> distance_conversion
 
 /* Set operator precedence, follows BODMAS rules. */
 %left SUB 
@@ -165,23 +160,11 @@ hyperbolic_function:
 		;
 		
 conversion:
-		temperature_conversion
-		| distance_conversion
-		|	expr GBP_TO_USD   { $$ = gbp_to_usd($1); }
-		| expr USD_TO_GBP   { $$ = usd_to_gbp($1); }
-		| expr GBP_TO_EURO  { $$ = gbp_to_euro($1); }
-		| expr EURO_TO_GBP  { $$ = euro_to_gbp($1); }
-		| expr USD_TO_EURO  { $$ = usd_to_euro($1); }
-		| expr EURO_TO_USD  { $$ = euro_to_usd($1); }
-		;
+		temperature_conversion;
 
 temperature_conversion:
 			expr CEL_TO_FAH 	{ $$ = cel_to_fah($1); }
 		| expr FAH_TO_CEL 	{ $$ = fah_to_cel($1); }
-
-distance_conversion:
-			expr M_TO_KM 			{ $$ = m_to_km($1); }
-		| expr KM_TO_M 			{ $$ = km_to_m($1); }
 		
 assignment: 
 		VAR_KEYWORD VARIABLE EQUALS calculation { $$ = set_variable($2, $4); }
