@@ -83,7 +83,15 @@ GROUP BY
   r.stars;
 -- Query 3 --
 SELECT
-  *
+  DISTINCT CASE
+    WHEN rv1.name > rv2.name THEN rv2.name
+    ELSE rv1.name
+  END AS "Reviewer 1",
+  CASE
+    WHEN rv1.name < rv2.name THEN rv2.name
+    ELSE rv1.name
+  END AS "Reviewer 2",
+  m.title
 from
   (
     (
@@ -94,7 +102,25 @@ from
       INNER JOIN Reviewer rv1 on rv1.rID = f.rID
     )
     INNER JOIN Reviewer rv2 on rv2.rID = f.rID
-  );
+  )
+WHERE
+  rv1.rID IN (
+    SELECT
+      rID
+    FROM
+      f
+    WHERE
+      mID = m.mID
+  )
+  AND rv2.rID IN (
+    SELECT
+      rID
+    FROM
+      Favourites
+    WHERE
+      mID = m.mID
+  )
+  AND rv1.rID != rv2.rID;
 -- Query 3 test --
 SELECT
   DISTINCT CASE
