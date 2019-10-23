@@ -1,1 +1,2 @@
 nvidia-docker run -it --net="host" -v /home/team1/171IT203/samples/:/workspace/ nvcr.io/nvidia/cuda:9.0-devel-ubuntu16.04
+nvidia-docker run -it --net="host" -v /home/team1/171IT203/5-Sem/pc/lab5/:/workspace/ nvcr.io/nvidia/cuda:9.0-devel-ubuntu16.04
