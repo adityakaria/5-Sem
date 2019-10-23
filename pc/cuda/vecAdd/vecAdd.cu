@@ -1,37 +1,36 @@
-#define N 256
+#define N 1618
+#define T 1024 // max threads per block
+
 #include <stdio.h>
 
-__global void vecAdd (int *a, int *b, int *c);
+global void vecAdd (int *a, int *b, int *c);
 
 int main() {
 	int a[N], b[N], c[N];
-	int *dev_A, *dev_b, *dev_c;
+	int *dev_a, *dev_b, *dev_c;
 
-	for (int i = 0; i < 240; i++) {
-		a[i] = i;
-		b[i] = i**2;
-	}
-	size = N * sizeof(int);
+	// initialize a and b with real values (NOT SHOWN) size = N * sizeof(int);
 
 	cudaMalloc((void**)&dev_a, size);
 	cudaMalloc((void**)&dev_b, size);
 	cudaMalloc((void**)&dev_c, size);
 
-	cudeMemcpy (dev_a, a, size, cudaMemcpyHostToDevice);
-	cudeMemcpy (dev_b, b, size, cudaMemcpyHostToDevice);
+	cudaMemcpy(dev_a, a, size,cudaMemcpyHostToDevice);
+	cudaMemcpy(dev_b, b, size,cudaMemcpyHostToDevice);
 
-	vectAdd<<<1,N>>>(dev_a,dev_b,dev_c);
+	vecAdd<<<(int)ceil(N/T),T>>>(dev_a,dev_b,dev_c);
 
-	cudaMemcpy (c, dev_c, size,cudaMemcpyDeviceToHost);
+	cudaMemcpy(c, dev_c, size,cudaMemcpyDeviceToHost); cudaFree(dev_a);
 
-	cudeFree(dev_a);
-	cudeFree(dev_b);
+	cudaFree(dev_b);
 	cudaFree(dev_c);
 
-	exit(0);
+	exit (0);
 }
 
-__global void vecAdd (int *a, int *b, int *c) {
-	int i = threadIdx.x;
-	c[i] = a[i] + b[i];
+global void vecAdd (int *a, int *b, int *c) {
+	int i = blockIdx.x * blockDim.x + threadIdx.x;
+	if (i < N) {
+		c[i] = a[i] + b[i];
+	}
 }
