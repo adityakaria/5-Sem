@@ -1,5 +1,5 @@
-#define N 512
-#define BLOCK_DIM 512
+#define N 32
+#define BLOCK_DIM 32
 #include <stdio.h>
 __global__ void matrixAdd (int *a, int *b, int *c);
 
@@ -9,10 +9,11 @@ int main() {
 	int size = N * N * sizeof(int);
 
 	// initialize a and b with real values (NOT SHOWN)
-	for (int i = 0; i < 200; i++) {
-		for (int j = 0; j < 200; j++) {
+	for (int i = 0; i < N; i++) {
+		for (int j = 0; j < N; j++) {
 			a[i][j] = i+j;
 			b[i][j] = i/2 + j/2;
+			c[i][j] = 0;
 		}
 	}
 
@@ -30,8 +31,8 @@ int main() {
 
 	cudaMemcpy(c, dev_c, size, cudaMemcpyDeviceToHost);
 
-	for (int i = 0; i < 200; i++) {
-		for (int j = 0; j < 200; j++) {
+	for (int i = 0; i < N; i++) {
+		for (int j = 0; j < N; j++) {
 			printf("%d + %d = %d\n", a[i][j], b[i][j], c[i][j]);
 		}
 	}
@@ -47,6 +48,6 @@ __global__ void matrixAdd (int *a, int *b, int *c) {
 	int index = col + row * N;
 	if (col < N && row < N) {
 		c[index] = a[index] + b[index];
-		printf("%d", c[index]);
+		// printf("%d", c[index]);
 	}
 }
