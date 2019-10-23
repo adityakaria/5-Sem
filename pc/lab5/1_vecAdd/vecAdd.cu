@@ -3,6 +3,7 @@
 __global__ void vecAdd (int *a, int *b, int *c);
 
 int main() {
+	clock_t t_exec = clock();
 	int a[N], b[N], c[N];
 	int *dev_a, *dev_b, *dev_c;
 	// initialize a and b with real values (NOT SHOWN)
@@ -26,6 +27,7 @@ int main() {
 	cudaFree(dev_a);
 	cudaFree(dev_b);
 	cudaFree(dev_c);
+	printf("Execution time: %f\n", (double)(clock() - t_exec)/CLOCKS_PER_SEC);
 	exit (0);
 }
 

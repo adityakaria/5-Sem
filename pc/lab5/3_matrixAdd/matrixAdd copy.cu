@@ -16,7 +16,7 @@ int main() {
 			c[i][j] = 0;
 		}
 	}
-	for (int k = 32; k <= 2048; k+=32) {
+	for (int k = 2; k <= 40; k+=1) {
 		clock_t t_exec = clock();
 
 		cudaMalloc((void**)&dev_a, size);
