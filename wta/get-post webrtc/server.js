@@ -32,7 +32,9 @@ function handleRequest(req, res) {
           post.category +
           "\n"
       );
-      var returnString =
+
+      var returnString = "";
+      returnString +=
         "Name: " +
         post.name +
         "\nEmail: " +
@@ -52,4 +54,5 @@ function handleRequest(req, res) {
     });
   }
 }
+
 console.log("Listening at port 8000");
