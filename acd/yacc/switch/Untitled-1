@@ -1,0 +1,14 @@
+switch(a)
+{
+case 1: for(i=0;i<3;i++){
+    if(x=2) {}
+    else {}
+};
+case 2: a=2;
+    break;
+default:a=0;
+break;
+}
+
+    else if(x=2) then {}
+    else {}

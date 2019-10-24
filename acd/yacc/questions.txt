@@ -1,0 +1,6 @@
+YACC Assignments
+3.Write a yacc program to implement Switch Statements with If-then,If-then Else, for  and While Statements inside.
+4. Write a yacc program to detect Palindrome.
+
+exc:
+lex *.l; yacc -d *.y; gcc lex.yy.c y.tab.c -ll; ./a.out;
