@@ -5,7 +5,7 @@ import sys
 def main():
     x_axis, y_axis = [], []
 
-    with open('/Users/adityakaria/code/5-Sem/pc/lab5/3_matrixAdd/op3_1.txt', 'r') as f:
+    with open('/Users/adityakaria/code/5-Sem/pc/lab5/5_matrixMult/op5_1.txt', 'r') as f:
         lines = f.readlines()
         for line in lines:
             listx = line.split()
