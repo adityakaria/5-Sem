@@ -146,9 +146,10 @@ def evaluate_algorithm(dataset, n_clusters, n_epoch, n_dims):
         old_means = means
         means = find_means(dataset, n_dims, n_clusters)
         # print(means)
-        print(accuracy)
+        print("accuracy:", accuracy)
         if (old_means == means):
             print("convergence")
+            print("final acc:", accuracy*100, "%")
             break
 
 
