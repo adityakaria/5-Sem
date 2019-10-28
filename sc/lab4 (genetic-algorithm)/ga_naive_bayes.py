@@ -216,7 +216,7 @@ def genetic_algorithm(pop_size, num_features, dataset, len_features):
 
 
 def main():
-    filename = 'SPECT.csv'
+    filename = '/Users/adityakaria/code/5-Sem/sc/lab4 (genetic-algorithm)/SPECTF.csv'
     features = []
     dataset = []
     with open(filename, 'r') as csvfile:

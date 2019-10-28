@@ -15,7 +15,7 @@ def find_dist(row, centroid):
 
 
 def fuzzy_clustering(dataset, n_attr, c, m):
-    prev_centroids = [[random.uniform(0, 10)
+    prev_centroids = [[random.uniform(0, 90)
                        for j in range(n_attr)] for i in range(c)]
     next_centroids = list()
 
@@ -66,6 +66,10 @@ def fuzzy_clustering(dataset, n_attr, c, m):
 
     correct = 0
     incorrect = 0
+    ttp = 0
+    ttn = 0
+    tfp = 0
+    tfn = 0
     # Assuming first cluster is class 0, second is class 1
     for actual_class in range(len(clusters)):
         for row_index in clusters[actual_class]:
@@ -74,9 +78,23 @@ def fuzzy_clustering(dataset, n_attr, c, m):
             else:
                 incorrect += 1
 
-    # print(correct,incorrect)
+            if actual_class == 1 and dataset[row_index][-1] == 1:
+                # print("ttp")
+                ttp += 1
+            elif actual_class == 0 and dataset[row_index][-1] == 1:
+                # print("tfp")
+                tfp += 1
+            elif actual_class == 0 and dataset[row_index][-1] == 0:
+                # print("ttn")
+                ttn += 1
+            elif actual_class == 1 and dataset[row_index][-1] == 0:
+                # print("tfn")
+                tfn += 1
 
-    return (correct/(incorrect+correct))
+    # print(correct,incorrect)
+    accuracy = correct / (incorrect+correct)
+    scores = [accuracy, ttp, tfp, ttn, tfn]
+    return scores
 
 
 def main():
@@ -113,10 +131,19 @@ def main():
     c = 2
     m = 2
 
-    accuracy = fuzzy_clustering(dataset, n_attr, c, m)
+    scores = fuzzy_clustering(dataset, n_attr, c, m)
+    accuracy = scores[0]
     if (accuracy < 0.5):
         accuracy = 1 - accuracy
-    print('Accuracy is ' + str(accuracy*100) + '%')
+    # print('Accuracy is ' + str(accuracy*100) + '%')
+    print("\tRESULTS:\n----------------------------------------------\n")
+    print("\tAccuracy: " + str(accuracy*100) + '%')
+    print()
+    print("\tTP:", scores[1], "\t", "FP: ", scores[2])
+    print("\tTN:", scores[3], "\t\t", "FN:", scores[4])
+    print()
+    print('\tPrecision: ', scores[1] / (scores[1] + scores[2]))
+    print('\tRecall: ', scores[1] / (scores[1] + scores[4]))
 
 
 if __name__ == '__main__':

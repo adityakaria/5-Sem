@@ -8,6 +8,8 @@ import os
 
 prec = []
 rec = []
+
+
 def load_csv(filename):
     dataset = list()
     with open(filename, 'r') as file:
@@ -138,7 +140,7 @@ def evaluate_algorithm(dataset, algorithm, n_folds, *args):
 
 
 def main():
-    filename = "/home/student/203/5-Sem/sc/lab2 (single-perceptron)/SPECTF.csv"
+    filename = "/Users/adityakaria/code/5-Sem/sc/lab2 (single-perceptron)/SPECTF.csv"
     attributes = []
     dataset = []
     with open(filename, 'r') as csvfile:
@@ -156,7 +158,7 @@ def main():
     # for i in range(len(dataset)):
     #     print(dataset[i])
     n_folds = 10
-    l_rate = 0.3
+    l_rate = 0.4
     n_epoch = 500
     scores = evaluate_algorithm(dataset, perceptron, n_folds, l_rate, n_epoch)
     print('Scores:')

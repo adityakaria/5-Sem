@@ -120,15 +120,34 @@ def find_means(dataset, n_dims, n_clusters):
     return means
 
 
-def find_accuracy(dataset, n_dims):
+def find_score(dataset, n_dims):
     n_t = 0
     n_f = 0
+    ttp = 0
+    ttn = 0
+    tfp = 0
+    tfn = 0
     for i in range(len(dataset)):
         if dataset[i][n_dims] == dataset[i][n_dims+1]:
             n_t += 1
         else:
             n_f += 1
-    return n_t / (n_t + n_f)
+
+        if dataset[i][n_dims] == 1 and dataset[i][n_dims+1] == 1:
+            # print("ttp")
+            ttp += 1
+        elif dataset[i][n_dims] == 0 and dataset[i][n_dims+1] == 1:
+            # print("tfp")
+            tfp += 1
+        elif dataset[i][n_dims] == 0 and dataset[i][n_dims+1] == 0:
+            # print("ttn")
+            ttn += 1
+        elif dataset[i][n_dims] == 1 and dataset[i][n_dims+1] == 0:
+            # print("tfn")
+            tfn += 1
+    accuracy = n_t / (n_t + n_f)
+    scores = [accuracy, ttp, tfp, ttn, tfn]
+    return scores
 
 
 # Main algorithm
@@ -139,17 +158,18 @@ def evaluate_algorithm(dataset, n_clusters, n_epoch, n_dims):
     # print(means)
 
     for i in range(n_epoch):
-        print("----------------------------epoch",
-              i, "-------------------------")
+        # print("----------------------------epoch", i, "-------------------------")
         dataset = clusterify(dataset, means, n_dims)
-        accuracy = find_accuracy(dataset, n_dims)
+        # scores = find_score(dataset, n_dims)
         old_means = means
         means = find_means(dataset, n_dims, n_clusters)
         # print(means)
-        print("accuracy:", accuracy)
+        # print("accuracy:", scores)
         if (old_means == means):
-            print("convergence")
-            print("final acc:", accuracy*100, "%")
+            # print("convergence")
+            # print("final acc:", accuracy*100, "%")
+            scores = find_score(dataset, n_dims)
+            return scores
             break
 
 
@@ -173,33 +193,19 @@ def main():
     dataset = dataset[1:]
     for i in range(len(dataset[0])-2):
         str_column_to_float(dataset, i)
-    # str_column_to_int(dataset, len(dataset[0])-2)
-    # str_column_to_int(dataset, len(dataset[0])-1)
-    # for i in range(len(dataset)):
-    #     print(dataset[i])
-    # for i in range(len(dataset)):
-        # print(dataset[i])
     n_epoch = 500
     n_clusters = 2
     # n_dims = 44
 
     scores = evaluate_algorithm(dataset, n_clusters, n_epoch, n_dims)
-    # print('Scores:')
-    # for i in range(len(scores)):
-    #     print(i+1, ": ", scores[i])
-    # print('Mean Accuracy: %.3f%%' % (sum(scores)/float(len(scores))))
-    # ttp = 0
-    # ttn = 0
-    # tfp = 0
-    # tfn = 0
-    # for i in range(len(prec)):
-    #     ttp += prec[i][0]
-    #     ttn += prec[i][1]
-    #     tfp += prec[i][2]
-    #     tfn += prec[i][3]
-    # print(ttp, ttn, tfp, ttn)
-    # print('Precision: ', ttp / (ttp + tfp))
-    # print('Recall: ', ttp / (ttp + tfn))
+    print("\tRESULTS:\n----------------------------------------------\n")
+    print("\tAccuracy:", scores[0])
+    print()
+    print("\tTP:", scores[1], "\t", "FP: ", scores[2])
+    print("\tTN:", scores[3], "\t\t", "FN:", scores[4])
+    print()
+    print('\tPrecision: ', scores[1] / (scores[1] + scores[2]))
+    print('\tRecall: ', scores[1] / (scores[1] + scores[4]))
 
 
 if __name__ == '__main__':

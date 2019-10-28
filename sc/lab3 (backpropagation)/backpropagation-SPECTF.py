@@ -9,6 +9,7 @@ from math import exp
 prec = []
 rec = []
 
+
 def load_csv(filename):
     dataset = list()
     with open(filename, 'r') as file:
@@ -21,7 +22,7 @@ def load_csv(filename):
             else:
                 row[0] = 0
             row = row[1:] + [row[0]]
-            
+
             dataset.append(row)
     return dataset[1:]
 
@@ -239,7 +240,7 @@ def back_propagation(train, test, l_rate, n_epoch, n_hidden):
 # Test Backprop on Seeds dataset
 seed(1)
 # load and prepare data
-filename = '/home/student/203/5-Sem/sc/lab3 (backpropagation)/SPECTF.csv'
+filename = '/Users/adityakaria/code/5-Sem/sc/lab3 (backpropagation)/SPECTF.csv'
 dataset = load_csv(filename)
 for i in range(len(dataset[0])-1):
     str_column_to_float(dataset, i)
@@ -250,7 +251,7 @@ minmax = dataset_minmax(dataset)
 normalize_dataset(dataset, minmax)
 # evaluate algorithm
 n_folds = 10
-l_rate = 0.3
+l_rate = 0.4
 n_epoch = 500
 n_hidden = 5
 scores = evaluate_algorithm(

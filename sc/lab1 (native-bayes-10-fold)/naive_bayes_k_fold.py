@@ -86,17 +86,18 @@ def fold(dataset, i, k):
 
 
 def main():
-    filename = "/Users/adityakaria/code/5-Sem/sc/lab1 (native-bayes-10-fold)/SPECT.csv"
+    filename = "/Users/adityakaria/code/5-Sem/sc/lab1 (native-bayes-10-fold)/IRIS.csv"
     attributes = []
     rows = []
     with open(filename, 'r') as csvfile:
         csvreader = csv.reader(csvfile)
 
-        attributes = csvreader.next()
+        # attributes = csvreader.next()
         for row in csvreader:
             rows.append(row)
     k = 10
     accuracy = []
+    rows = rows[1:]
     avg_acc = 0.0
 
     for i in range(1, k+1):

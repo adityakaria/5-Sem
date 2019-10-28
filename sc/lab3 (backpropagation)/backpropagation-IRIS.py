@@ -96,7 +96,7 @@ def accuracy_metric(actual, predicted):
             false_positive += 1
         if actual[i] == 0 and predicted[i] == 0:
             true_negative += 1
-        
+
     # print('Precision: ', true_positive / (true_positive + false_positive))
     # print('Recall: ', true_positive / (true_positive + false_negative))
     return correct / float(len(actual)) * 100.0
@@ -242,7 +242,7 @@ def back_propagation(train, test, l_rate, n_epoch, n_hidden):
 seed(1)
 
 # load and prepare data
-filename = '/home/student/203/5-Sem/sc/lab3 (backpropagation)/IRIS.csv'
+filename = '/Users/adityakaria/code/5-Sem/sc/lab3 (backpropagation)/IRIS.csv'
 dataset = load_csv(filename)
 for i in range(len(dataset[0])-1):
     str_column_to_float(dataset, i)

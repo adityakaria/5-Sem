@@ -5,7 +5,8 @@ import math
 import os
 
 # Load a CSV file
-
+prec = []
+rec = []
 
 def load_csv(filename):
     dataset = list()
@@ -58,8 +59,23 @@ def cross_validation_split(dataset, n_folds):
 def accuracy_metric(actual, predicted):
     correct = 0
     for i in range(len(actual)):
+        true_positive = 0
+        false_positive = 0
+        true_negative = 0
+        false_negative = 0
         if actual[i] == predicted[i]:
             correct += 1
+        if actual[i] == 1 and predicted[i] == 1:
+            true_positive += 1
+        if actual[i] == 1 and predicted[i] == 0:
+            false_negative += 1
+        if actual[i] == 0 and predicted[i] == 1:
+            false_positive += 1
+        if actual[i] == 0 and predicted[i] == 0:
+            true_negative += 1
+        
+    prec.append([true_positive, true_negative, false_positive, false_negative])
+       
     return correct / float(len(actual)) * 100.0
 
 # Make a prediction with weights
@@ -124,13 +140,15 @@ def evaluate_algorithm(dataset, algorithm, n_folds, *args):
 
 
 def main():
-    filename = "/Users/adityakaria/code/5-Sem/sc/lab2 (single-perceptron)/IRIS.csv"
+    filename = "/home/student/203/5-Sem/sc/lab2 (single-perceptron)/SPECT.csv"
     attributes = []
     dataset = []
     with open(filename, 'r') as csvfile:
         csvreader = csv.reader(csvfile)
         # attributes = csvreader.next()
         for row in csvreader:
+            row = row[1:] + [1 if row[0] == "Yes" else 0]
+            # print(row)
             dataset.append(row)
     attributes = dataset[0]
     dataset = dataset[1:]
@@ -141,13 +159,26 @@ def main():
     # for i in range(len(dataset)):
     #     print(dataset[i])
     n_folds = 10
-    l_rate = 1.0
+    l_rate = 0.2
     n_epoch = 500
     scores = evaluate_algorithm(dataset, perceptron, n_folds, l_rate, n_epoch)
     print('Scores:')
     for i in range(len(scores)):
         print(i+1, ": ", scores[i])
     print('Mean Accuracy: %.3f%%' % (sum(scores)/float(len(scores))))
+    ttp = 0
+    ttn = 0
+    tfp = 0
+    tfn = 0
+    for i in range(len(prec)):
+        ttp += prec[i][0]
+        ttn += prec[i][1]
+        tfp += prec[i][2]
+        tfn += prec[i][3]
+    print(ttp, ttn, tfp, ttn)
+    print('Precision: ', ttp / (ttp + tfp))
+    print('Recall: ', ttp / (ttp + tfn))
+
 
 
 if __name__ == '__main__':
