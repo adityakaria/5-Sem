@@ -52,7 +52,13 @@
      OR = 268,
      AND = 269,
      ELSE = 270,
-     UMINUS = 271
+     WHILE = 271,
+     IF = 272,
+     FOR = 273,
+     THEN = 274,
+     INC = 275,
+     DEC = 276,
+     UMINUS = 277
    };
 #endif
 /* Tokens.  */
@@ -69,7 +75,13 @@
 #define OR 268
 #define AND 269
 #define ELSE 270
-#define UMINUS 271
+#define WHILE 271
+#define IF 272
+#define FOR 273
+#define THEN 274
+#define INC 275
+#define DEC 276
+#define UMINUS 277
 
 
 

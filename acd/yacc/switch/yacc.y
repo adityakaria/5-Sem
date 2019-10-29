@@ -3,7 +3,7 @@
 #include <stdlib.h>
 int yylex();
 %}
-%token ID NUM SWITCH CASE DEFAULT BREAK LE GE EQ NE OR AND ELSE WHILE IF FOR THEN
+%token ID NUM SWITCH CASE DEFAULT BREAK LE GE EQ NE OR AND ELSE WHILE IF FOR THEN INC DEC
 %right '='
 %left AND OR
 %left '<' '>' LE GE EQ NE
@@ -23,7 +23,7 @@ B       :    C
         ;
 
 C      :    C    C
-        |    CASE NUM ':' E F ';'
+        |    CASE NUM ':' F
         | BREAK ';'
         ;
 
@@ -44,6 +44,8 @@ E    : ID'='E
     | E OR E
     | E AND E
     | ID
+    | E INC
+    | E DEC
     | NUM
     ;
 
@@ -53,6 +55,7 @@ F   : F F
     | ELSE '{' F '}'
     | FOR '(' E ';' E ';' E ')' '{' F '}'
     | WHILE '(' E ')' '{' F '}'
+    | E';'
     |
     ;
 
