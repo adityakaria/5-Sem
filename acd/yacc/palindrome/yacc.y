@@ -45,6 +45,7 @@ void yyerror(char *msg)
 
 int main()
 {
+	printf("Enter expression:\n");
 	yyparse();
 	return 0;
 }

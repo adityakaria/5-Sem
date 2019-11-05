@@ -1,10 +1,10 @@
 switch(a)
 {
 case 1:
-if (x==2) then {a=3;}
+if (x==2) then {if (y==3) then {a=3;}}
 else if(x=2) then {}
     else {}
-for(i=0;i<3;i++){ a=2; }
+for(i=0;i<3;i++){ a=2; for(i=0;i<3;i++){ a=2; } }
 case 2: a=2;
     break;
 default:a=0;

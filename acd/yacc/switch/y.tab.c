@@ -1694,5 +1694,6 @@ int main()
 {
 printf("Enter the exp: ");
 yyparse();
+// lex lex.l; yacc -d yacc.y; cc y.tab.c -ly -ll -lm; ./a.out
 }
 
