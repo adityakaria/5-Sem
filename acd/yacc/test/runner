@@ -1,0 +1,5 @@
+while (a > 2)
+begin
+    a = 10 * d + e;
+    x = 2 / 9;
+end

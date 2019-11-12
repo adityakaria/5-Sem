@@ -112,7 +112,7 @@ BEGIN
     DECLARE employee_name varchar(100);
     DECLARE emp_pos varchar(20);
 
-    DEClARE cursor_sal CURSOR FOR SELECT Id FROM Employee_2;
+    DECLARE cursor_sal CURSOR FOR SELECT Id FROM Employee_2;
 
     DECLARE CONTINUE HANDLER FOR NOT FOUND SET finished = 1;
 
@@ -139,7 +139,7 @@ BEGIN
     END LOOP s_loop;
 
     CLOSE cursor_sal;
-END $$
+END$$
 DELIMITER ;
 
 CALL update_emp_salary();

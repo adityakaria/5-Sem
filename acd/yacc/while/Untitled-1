@@ -1,0 +1,12 @@
+while (a > 2)
+begin
+    a = 10 * d + e;
+    x = 2 / 9;
+    while (x < 52)
+    begin
+        for (i = 0;i < 3; i++)
+        begin
+            x = 4 + s;
+        end
+    end
+end
