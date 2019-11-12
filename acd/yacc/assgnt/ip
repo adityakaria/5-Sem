@@ -1,0 +1,4 @@
+while(a<c and b<c or c>d) {
+       a=b/c*d+(-c); 
+       print a;   
+       }
